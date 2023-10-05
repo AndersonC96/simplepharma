@@ -25,13 +25,13 @@
 		session_write_close();
 		switch($_SESSION['sess_userrole']){
 			case "admin":
-			header('Location: Admin/Admin-Home.php');
+			header('Location: Admin/adminHome.php');
 			break;
 			case "tecnico":
-			header('Location: Tecnico/Tecnico-Home.php');
+			header('Location: Tecnico/tecnicoHome.php');
 			break;
 			case "subadmin":
-			header('Location: SubAdmin/SubAdmin-Home.php');
+			header('Location: SubAdmin/SubAdminHome.php');
 			break;
 		}
 	}
