@@ -44,4 +44,4 @@ project/
 |--autenticar-usuario____.php | Página para autenticar usuário • Feito -- Não sera usada
 |--coneexao.php | Página para conectar ao banco • Feito
 |--index.php | Página inicial • Feito
-|--logout.php | Página para fazer logout • 
+|--logout.php | Página para fazer logout • Feito
