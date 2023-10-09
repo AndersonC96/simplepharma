@@ -3,7 +3,7 @@
     $itens_por_pagina = 10;
     $pagina = intval($_GET['pagina']);
     $item = $pagina * $itens_por_pagina;
-    $sql_code = "select contador,loca,tecnico,datahora,status,servico from chamados WHERE Status='Aberto' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
+    $sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE Status='Aberto' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
     $execute = $conn->query($sql_code) or die($conn->error);
     $produto = $execute->fetch_assoc();
     $num = $execute->num_rows;
