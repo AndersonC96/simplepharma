@@ -37,18 +37,18 @@
                         <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Chamados<span class="caret"></span></a>
                             <ul class="dropdown-menu multi-level">
                                 <li><a href="abrirchamadoAdmin.php">Abrir Chamado</a></li>
-                                <li><a href="Deletar-chamado-admin.php">Deletar Chamado</a></li>
+                                <li><a href="deletarchamdoAdmin.php">Deletar Chamado</a></li>
                                 <li><a href="chamadosAbertos.php">Chamados em Aberto <span class="badge badge-danger"><?php echo $num;?></span></a></li>
-                                <li><a href="ChamadosConcluidos.php">Chamados Concluídos</a></li>
-                                <li><a href="Ver-chamados-admin.php">Listar Chamado</a></li>
+                                <li><a href="chamadosConcluidos.php">Chamados Concluídos</a></li>
+                                <li><a href="verchamadosAdmin.php">Listar Chamado</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Técnico<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="insere_tecnico_res.php">Inserir Técnico</a></li>
-                                <li><a href="remove_tecnico_res.php">Remover Técnico</a></li>
-                                <li><a href="Ver-tecnicos.php">Ver Técnicos</a></li>
+                                <li><a href="inseretecnicoRes.php">Inserir Técnico</a></li>
+                                <li><a href="removetecnicoRes.php">Remover Técnico</a></li>
+                                <li><a href="verTecnicos.php">Ver Técnicos</a></li>
                             </ul>
                         </li>
                     </ul>
