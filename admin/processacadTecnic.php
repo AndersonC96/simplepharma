@@ -38,8 +38,8 @@
 			</div>
 		</div>
 		<?php
-			//$link = mysqli_connect("localhost", "root", "", "simplepharma");
-			$link = mysqli_connect($hostname_conexao, $username_conexao, $password_conexao, $database_conexao);
+			//$link = mysqli_connect($hostname_conexao, $username_conexao, $password_conexao, $database_conexao);
+			$link = mysqli_connect("localhost", "root", "", "simplepharma");
 			if($link === false){
 				die("ERROR: Could not connect. " . mysqli_connect_error());
 			}
@@ -48,7 +48,7 @@
 			$senhatecni = $_POST['senhatec'];
 			$sql2 = "INSERT INTO usuarios(nome,username,password,role) VALUES ('$nomecompletotec','$nomesistec','$senhatecni','tecnico')";
 			if(mysqli_query($link, $sql2)){
-				if($total = mysqli_affected_rows($link)){
+				if ($total = mysqli_affected_rows($link)){
 					echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
 				}else{
 					echo '<script type="text/javascript"> $("#myModal").modal("show")</script>';
