@@ -38,8 +38,8 @@
       </div>
     </div>
     <?php
-      //$link = mysqli_connect("localhost", "root", "", "simplepharma");
-      $link = mysqli_connect($hostname_conexao, $username_conexao, $password_conexao, $database_conexao);
+      $link = mysqli_connect("localhost", "root", "", "simplepharma");
+      //$link = mysqli_connect($hostname_conexao, $username_conexao, $password_conexao, $database_conexao);
       $nome_tec = $_POST['tecex'];
       if($link === false){
         die("ERROR: Could not connect. " . mysqli_connect_error());
