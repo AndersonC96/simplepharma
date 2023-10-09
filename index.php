@@ -23,7 +23,7 @@
                 }
             ?>
             <br>
-            <form action="autenticar-usuario.php" method="POST"  role="form">
+            <form action="autenticarUsuario.php" method="POST"  role="form">
                 <div class="form-group">
                     <!--<label for="email">Nome</label>-->
                     <input type="text" name="username" class="form-control" placeholder="E-Mail" required autofocus>
