@@ -1,14 +1,14 @@
 <?php
-	require 'conexao.php';
+	require 'coneexao.php';
 	session_start();
 	$username = "";
 	$password = "";
 	if(isset($_POST['username'])){
 		$username = $_POST['username'];
 	}
-	if(isset($_POST['password'])){
+	if (isset($_POST['password'])) {
 		$password = $_POST['password'];
-	}
+		}
 	$q = 'SELECT * FROM usuarios WHERE username=:username AND password=:password';
 	$query = $dbh->prepare($q);
 	$query->execute(array(':username' => $username, ':password' => $password));
