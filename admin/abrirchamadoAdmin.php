@@ -40,7 +40,7 @@
 								<li><a href="#">Abrir Chamado</a></li>
 								<li><a href="deletarchamdoAdmin.php">Deletar Chamado</a></li>
 								<li><a href="chamadosAbertos.php">Chamados em Aberto <span class="badge badge-danger"><?php echo $num;?></span></a></li>
-								<li><a href="ChamadosConcluidos.php">Chamados Concluídos</a></li>
+								<li><a href="chamadosConcluidos.php">Chamados Concluídos</a></li>
 								<li><a href="verchamadosAdmin.php">Listar Chamado</a></li>
 							</ul>
 						</li>
@@ -61,7 +61,7 @@
 		</nav>
 		<div class="container">
 			<h2>Preencha os campos</h2>
-			<form method="POST" action="Processa-insere-chamado.php">
+			<form method="POST" action="processainsereChamado.php">
 				<div class="form-group">
 					<label for="sel1">Selecione um local</label>
 					<select class="form-control" id="local" name="local">
