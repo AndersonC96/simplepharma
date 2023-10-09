@@ -85,7 +85,7 @@
 					<?php
 						ini_set('default_charset','UTF-8');
 						$conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die ('Cannot connect to db');
-						$result = $conn->query("select id, Nome from tecnicos");
+						$result = $conn->query("select id, nome from tecnicos");
 						echo "<select name='id'>";
 						while($row = $result->fetch_assoc()){
 							unset($id, $name);
