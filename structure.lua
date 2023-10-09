@@ -43,6 +43,6 @@ project/
 |	|--ver1chamadoTecnico.php | Página para ver chamados •
 |--autenticarUsuario.php | Página para autenticar usuário • Feito
 |--autenticarusuario(naousar).php | Página para autenticar usuário • Feito -- Não sera usada
-|--coneexao.php | Página para conectar ao banco • Feito
+|--conexao.php | Página para conectar ao banco • Feito
 |--index.php | Página inicial • Feito
 |--logout.php | Página para fazer logout • Feito
