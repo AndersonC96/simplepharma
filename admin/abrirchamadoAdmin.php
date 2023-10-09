@@ -3,7 +3,7 @@
     $role = $_SESSION['sess_userrole'];
     if(!isset($_SESSION['sess_username']) || $role!="admin"){
 		header('Location: ../index.php?err=2');
-	}
+    }
 ?>
 <?php
 	include("conexaodbAdmin.php");
@@ -16,10 +16,15 @@
 <html lang="en">
 	<head>
 		<title>Abrir Chamado</title>
-		<link rel="icon" type="image/png" href="../img/favicon.png"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="/bootstrap/pt-br.js"></script>
+		<link rel="icon" type="image/png" href="../img/favicon.png"/>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -30,17 +35,17 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#"><b style="Color: rgb(62 166 173)">Simple Phama</b> Chamados</a>
+					<a class="navbar-brand" href="#"><b style="color: rgb(83 168 177)">Simple Pharma</b> Chamados</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="adminHome.php">Home</a></li>
+						<li class="active"><a href="Admin-Home.php">Home</a></li>
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Chamados<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Abrir Chamado</a></li>
 								<li><a href="deletarchamadoAdmin.php">Deletar Chamado</a></li>
-								<li><a href="chamadosAbertos.php">Chamados em Aberto <span class="badge badge-danger"><?php echo $num;?></span></a></li>
+								<li><a href="chamadosAbertos.php">Chamados em Aberto<span class="badge badge-danger"><?php echo $num;?></span></a></li>
 								<li><a href="chamadosConcluidos.php">Chamados Concluídos</a></li>
 								<li><a href="verchamadosAdmin.php">Listar Chamado</a></li>
 							</ul>
@@ -66,11 +71,8 @@
 				<div class="form-group">
 					<label for="sel1">Selecione um local</label>
 					<select class="form-control" id="local" name="local">
-						<option>1</option>
+						<option>Simple Pharma SP</option>
 						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
 					</select>
 					<br>
 				</div>
@@ -83,13 +85,13 @@
 					<?php
 						ini_set('default_charset','UTF-8');
 						//$conn = new mysqli('localhost', 'root', '', 'simplepharma') or die ('Cannot connect to db');
-						$conn = new mysqli('$servidor', '$usuario', '$senha', '$dbname') or die ('Cannot connect to db');
+						$conn = new mysqli('$hostname_conexao', '$username_conexao', '$password_conexao', '$database_conexao') or die ('Cannot connect to db');
 						$result = $conn->query("select id, Nome from tecnicos");
 						echo "<select name='id'>";
 						while($row = $result->fetch_assoc()){
 							unset($id, $name);
 							$id = $row['id'];
-							$name = $row['Nome'];
+							$name = $row['nome'];
 							echo '<option value="'.$name.'">'.$name.'</option>';
 						}
 						echo $return .= ' </select>';
@@ -107,7 +109,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							$(function (){
+							$(function(){
 								$('#datetimepicker1').datetimepicker({
 									locale: 'pt-br'
 								});
