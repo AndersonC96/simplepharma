@@ -71,7 +71,7 @@
 				<div class="form-group">
 					<label for="sel1">Selecione um local</label>
 					<select class="form-control" id="local" name="local">
-						<option>Simple Pharma SP</option>
+						<option>Simple Pharma (São Paulo)</option>
 						<option>2</option>
 					</select>
 					<br>
@@ -84,8 +84,7 @@
 					<label for="servi">Técnico</label>
 					<?php
 						ini_set('default_charset','UTF-8');
-						//$conn = new mysqli('localhost', 'root', '', 'simplepharma') or die ('Cannot connect to db');
-						$conn = new mysqli('$hostname_conexao', '$username_conexao', '$password_conexao', '$database_conexao') or die ('Cannot connect to db');
+						$conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die ('Cannot connect to db');
 						$result = $conn->query("select id, Nome from tecnicos");
 						echo "<select name='id'>";
 						while($row = $result->fetch_assoc()){
