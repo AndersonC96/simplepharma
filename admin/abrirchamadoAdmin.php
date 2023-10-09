@@ -39,7 +39,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="#">Abrir Chamado</a></li>
 								<li><a href="Deletar-chamado-admin.php">Deletar Chamado</a></li>
-								<li><a href="Chamados_abertos.php">Chamados em Aberto <span class="badge badge-danger"><?php echo $num;?></span></a></li>
+								<li><a href="chamadosAbertos.php">Chamados em Aberto <span class="badge badge-danger"><?php echo $num;?></span></a></li>
 								<li><a href="Chamados_concluidos.php">Chamados Concluídos</a></li>
 								<li><a href="Ver-chamados-admin.php">Listar Chamado</a></li>
 							</ul>
