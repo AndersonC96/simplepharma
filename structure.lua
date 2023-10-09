@@ -7,7 +7,7 @@ project/
 |	|--deletarchamdoAdmin.php | Página para deletar chamados • 
 |	|--processainsereChamado.php | Página para inserir chamados • 
 |	|--verchamadosAdmin.php | Página para ver chamados • 
-|	|--verTecnicoc.php | Página para ver técnicos • 
+|	|--verTecnicos.php | Página para ver técnicos • 
 |	|--conectapuxadadosAdmin.php | Página para puxar dados do banco • 
 |	|--conexao.php | Página para conectar ao banco • 
 |	|--deleteOS.php | Página para deletar chamados • 
@@ -16,6 +16,7 @@ project/
 |	|--inseretecnicoRes.php | Página para inserir técnicos • 
 |	|--logout.php | Página para fazer logout • 
 |	|--processacadTecnic.php | Página para cadastrar técnicos • 
+|	|--removetecnicoRes.php | Página para remover técnicos • 
 |	|--ver1chamadoAdmin.php | Página para ver chamados • 
 |--subAdmin/
 |	|--abrirchamadoSadmin.php | Página para abrir chamado • 
