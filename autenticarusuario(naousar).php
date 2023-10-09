@@ -1,14 +1,14 @@
-<?php 
-	require 'conexao.php';
+<?php
+	require 'coneexao.php';
 	session_start();
 	$username = "";
 	$password = "";
 	if(isset($_POST['username'])){
 		$username = $_POST['username'];
 	}
-	if(isset($_POST['password'])){
+	if (isset($_POST['password'])) {
 		$password = $_POST['password'];
-	}
+		}
 	$q = 'SELECT * FROM usuarios WHERE username=:username AND password=:password';
 	$query = $dbh->prepare($q);
 	$query->execute(array(':username' => $username, ':password' => $password));
@@ -24,10 +24,10 @@
 		echo $_SESSION['sess_userrole'];
 		session_write_close();
 		if( $_SESSION['sess_userrole'] == "admin"){
-			header('Location: Admin/Admin-Home.php');
-		}elseif ( $_SESSION['sess_userrole'] == "tecnico"){
-			header('Location: Tecnico/Tecnico-Home.php');
+			header('Location: admin/adminHome.php');
+			}elseif ( $_SESSION['sess_userrole'] == "tecnico"){
+			header('Location: tecnico/tecnicoHome.php');
+			}
 		}
-	}
-	$dbh = null;
+		$dbh = null;
 ?>
