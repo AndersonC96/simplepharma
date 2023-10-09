@@ -7,7 +7,7 @@
 ?>
 <?php
     include("conecta-puxa-dados-admin.php");
-    $sql_code = "select * from chamados1 WHERE Status='Aberto'";
+    $sql_code = "select * from chamados WHERE Status='Aberto'";
     $execute = $mysqli->query($sql_code) or die($mysqli->error);
     $produto = $execute->fetch_assoc();
     $num = $execute->num_rows;
