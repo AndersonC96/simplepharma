@@ -25,7 +25,7 @@
 					echo '<p class="text-danger">'.$errors[$error_id].'</p>';
 				}
 			?>
-			<form action="autenticacao-usuario.php" method="POST"  role="form">
+			<form action="autenticarUsuario.php" method="POST"  role="form">
 				<div class="form-group">
 					<!--<label for="email">Nome</label>-->
 					<input type="text" name="username" class="form-control" placeholder="Usuário" required autofocus>
