@@ -65,7 +65,7 @@
 		</nav>
 		<div class="container">
 			<h2>Modelo Beta de testes</h2>
-			<h4>Bem vindo <?php echo $_SESSION['sess_usersisname'];?></h4>
+			<h4>Bem vindo <b style="color: rgb(83 168 177)"><?php echo $_SESSION['sess_usersisname'];?></b></h4>
 			<p>Algumas funcionalidades podem não estar ativas ainda</p>
 		</div>
 	</body>
