@@ -1,5 +1,5 @@
 <?php
-	require 'coneexao.php';
+	require 'conexao.php';
 	session_start();
 	$username = "";
 	$password = "";
