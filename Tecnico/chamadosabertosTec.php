@@ -12,11 +12,11 @@
 	$pagina = intval($_GET['pagina']);
 	$tecnico = $_SESSION['sess_username'];
 	$item = $pagina * $itens_por_pagina;
-	$sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE Status='Aberto' AND tecnico='$tecnico' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
+	$sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE status='Aberto' AND tecnico='$tecnico' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
 	$execute = $conn->query($sql_code) or die($conn->error);
 	$produto = $execute->fetch_assoc();
 	$num = $execute->num_rows;
-	$num_total = $conn->query("select contador,local,tecnico,dataHora,status,servico from chamados WHERE Status='Aberto' AND tecnico='$tecnico'")->num_rows;
+	$num_total = $conn->query("select contador,local,tecnico,dataHora,status,servico from chamados WHERE status='Aberto' AND tecnico='$tecnico'")->num_rows;
 	$num_paginas = ceil($num_total/$itens_por_pagina);
 ?>
 <!DOCTYPE html>
