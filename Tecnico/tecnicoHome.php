@@ -6,7 +6,7 @@
     }
 ?>
 <?php
-  include("conecta-puxa-dados-admin.php");
+  include("conexaodbAdmin.php");
   $tecnico = $_SESSION['sess_username'];
   $sql_code = "select * from chamados WHERE status='Aberto' AND tecnico='$tecnico'";
   $execute = $mysqli->query($sql_code) or die ($mysqli->error);
