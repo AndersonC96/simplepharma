@@ -1,13 +1,14 @@
 <?php
+	error_reporting(0);
 	include("conexao.php");
 	$itens_por_pagina = 10;
 	$pagina = intval($_GET['pagina']);
 	$item = $pagina * $itens_por_pagina;
-	$sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE  Status='Feito' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
+	$sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE status='Feito' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
 	$execute = $conn->query($sql_code) or die($conn->error);
 	$produto = $execute->fetch_assoc();
 	$num = $execute->num_rows;
-	$num_total = $conn->query("select contador,local,tecnico,datahora,status,servico from chamados WHERE Status='Feito'")->num_rows;
+	$num_total = $conn->query("select contador,local,tecnico,datahora,status,servico from chamados WHERE status='Feito'")->num_rows;
 	$num_paginas = ceil($num_total/$itens_por_pagina);
 ?>
 <?php
@@ -19,7 +20,7 @@
 ?>
 <?php
 	include("conexaodbAdmin.php");
-	$sql_code2 = "select * from chamado WHERE Status='Aberto'";
+	$sql_code2 = "select * from chamado WHERE status='Aberto'";
 	$execute2 = $mysqli->query($sql_code2) or die($mysqli->error);
 	$produto2 = $execute->fetch_assoc();
 	$num2 = $execute2->num_rows;
@@ -93,9 +94,9 @@
 						<?php }elseif ($produto['status']=="Feito") {?>
 						<td style="background-color:#0F0;"> <?php echo $produto['status']; ?></td>
 						<?php } ?>
-						<td>  <a class="btn btn-info btn-sm" href="ver1chamadoAdmin.php?chamado=<?php echo $produto['contador'];?>"data-toggle="tooltip" title="Detalhes"><span class="glyphicon glyphicon-share"></span>Ver</button></td>
+						<td><a class="btn btn-info btn-sm" href="ver1chamadoAdmin.php?chamado=<?php echo $produto['contador'];?>"data-toggle="tooltip" title="Detalhes"><span class="glyphicon glyphicon-share"></span>Ver</button></td>
 					</tr>
-					<?php } while($produto = $execute->fetch_assoc()); ?>
+					<?php }while($produto = $execute->fetch_assoc()); ?>
 				</tbody>
 			</table>
 			<nav>
