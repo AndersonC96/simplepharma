@@ -6,12 +6,13 @@
     }
 ?>
 <?php
+	error_reporting(0);
 	include("conexao.php");
 	$itens_por_pagina = 10;
 	$pagina = intval($_GET['pagina']);
 	$tecnico = $_SESSION['sess_username'];
 	$item = $pagina * $itens_por_pagina;
-	$sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE Status='Feito' AND Técnico='$tecnico' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
+	$sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE Status='Feito' AND tecnico='$tecnico' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
 	$execute = $conn->query($sql_code) or die($conn->error);
 	$produto = $execute->fetch_assoc();
 	$num = $execute->num_rows;
@@ -20,7 +21,7 @@
 ?>
 <?php
 	include("conexaodbAdmin.php");
-	$sql_code2 = "select * from chamados WHERE Status='Aberto' AND Técnico='$tecnico'";
+	$sql_code2 = "select * from chamados WHERE Status='Aberto' AND tecnico='$tecnico'";
 	$execute2 = $mysqli->query($sql_code2) or die($mysqli->error);
 	$produto2 = $execute2->fetch_assoc();
 	$num2 = $execute2->num_rows;
