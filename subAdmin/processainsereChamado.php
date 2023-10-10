@@ -19,7 +19,7 @@
           </div>
           <div class="modal-body">Chamado Aberto com sucesso !</div>
           <div class="modal-footer">
-            <a class="btn btn-success" href="adminHome.php">Entendido</a>
+            <a class="btn btn-success" href="subadminHome.php">Entendido</a>
           </div>
         </div>
       </div>
@@ -36,9 +36,9 @@
       $local = $_POST['local'];
       $servico = $_POST['servico'];
       $tecnico = $_POST['id'];
-      $data_atendimento = $_POST['datefrom'];
+      $data_atendimento = $_POST['dateFrom'];
       $status = "Aberto";
-      $result_usuario = "INSERT INTO chamados(local,dataHora,tecnico,status,servico) VALUES ('$local','$data_atendimento','$tecnico','$status','$servico')";
+      $result_usuario = "INSERT INTO chamados(local,datahora,tecnico,status,servico) VALUES ('$local','$data_atendimento','$tecnico','$status','$servico')";
       $resultado_usuario = mysqli_query($conn, $result_usuario);
       if(mysqli_affected_rows($conn) != 0){
         echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
