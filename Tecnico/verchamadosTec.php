@@ -1,4 +1,5 @@
 <?php
+	error_reporting(0);
     session_start();
     $role = $_SESSION['sess_userrole'];
     if(!isset($_SESSION['sess_username']) || $role!="tecnico"){
@@ -12,10 +13,10 @@
 	$tecnico = $_SESSION['sess_username'];
 	$item = $pagina * $itens_por_pagina;
 	$sql_code = "select * from chamados WHERE  tecnico='$tecnico' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
-	$execute = $conn->query($sql_code) or die($conn->error);
+	$execute = $conn->query($sql_code) or die ($conn->error);
 	$produto = $execute->fetch_assoc();
 	$num = $execute->num_rows;
-	$num_total = $conn->query("select * from chamados1 WHERE  Técnico='$tecnico'")->num_rows;
+	$num_total = $conn->query("select * from chamados WHERE tecnico='$tecnico'")->num_rows;
 	$num_paginas = ceil($num_total/$itens_por_pagina);
 ?>
 <?php
@@ -120,7 +121,7 @@
 			</nav>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	 
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
