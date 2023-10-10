@@ -6,7 +6,7 @@
     }
 ?>
 <?php
-	include("conexaodbAdmin");
+	include("conexaodbAdmin.php");
 	$sql_code = "select * from chamados WHERE Status='Aberto'";
 	$execute = $mysqli->query($sql_code) or die($mysqli->error);
 	$produto = $execute->fetch_assoc();
