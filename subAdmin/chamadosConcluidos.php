@@ -21,7 +21,7 @@
 <?php
 	include("conexaodbAdmin.php");
 	$sql_code2 = "select * from chamado WHERE status='Aberto'";
-	$execute2 = $mysqli->query($sql_code2) or die($mysqli->error);
+	$execute2 = $mysqli->query($sql_code2) or die ($mysqli->error);
 	$produto2 = $execute->fetch_assoc();
 	$num2 = $execute2->num_rows;
 ?>
