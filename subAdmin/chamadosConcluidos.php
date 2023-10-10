@@ -13,13 +13,13 @@
 <?php
     session_start();
     $role = $_SESSION['sess_userrole'];
-    if(!isset($_SESSION['sess_username']) || $role!="subadim"){
+    if(!isset($_SESSION['sess_username']) || $role!="subadmin"){
 		header('Location: ../index.php?err=2');
     }
 ?>
 <?php
 	include("conexaodbAdmin.php");
-	$sql_code2 = "select * from chamado1 WHERE Status='Aberto'";
+	$sql_code2 = "select * from chamado WHERE Status='Aberto'";
 	$execute2 = $mysqli->query($sql_code2) or die($mysqli->error);
 	$produto2 = $execute->fetch_assoc();
 	$num2 = $execute2->num_rows;
