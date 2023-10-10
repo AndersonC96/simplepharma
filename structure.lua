@@ -19,28 +19,28 @@ project/
 |	|--verchamadosAdmin.php         | Página para ver chamados              • Feito
 |	|--verTecnicos.php              | Página para ver técnicos              • Feito
 |--subAdmin/
-|	|--abrirchamadoSadmin.php | Página para abrir chamado • 
-|	|--chamadosAbertos.php | Página para ver chamados abertos • 
-|	|--chamadosConcluidos.php | Página para ver chamados concluídos • 
-|	|--deletarchamadoSadmin.php | Página para deletar chamados • 
-|	|--processainsereChamado.php | Página para inserir chamados • 
-|	|--subadminHome.php | Página inicial do subadministrador • 
-|	|--verchamadosSadmin.php | Página para ver chamados • 
-|	|--conexaodbAdmin.php | Página para puxar dados do banco • 
-|	|--conexao.php | Página para conectar ao banco • 
-|	|--logout.php | Página para fazer logout • 
-|	|--ver1chamadoAdmin.php | Página para ver chamados •
+|	|--abrirchamadoSadmin.php | Página para abrir chamado • Feito
+|	|--chamadosAbertos.php | Página para ver chamados abertos • Feito
+|	|--chamadosConcluidos.php | Página para ver chamados concluídos • Feito
+|	|--conexao.php | Página para conectar ao banco • Feito
+|	|--conexaodbAdmin.php | Página para puxar dados do banco • Feito
+|	|--deletarchamadoSadmin.php | Página para deletar chamados • Feito
+|	|--logout.php | Página para fazer logout • Feito
+|	|--processainsereChamado.php | Página para inserir chamados • Feito
+|	|--subadminHome.php | Página inicial do subadministrador • Feito
+|	|--ver1chamadoAdmin.php | Página para ver chamados • Feito
+|	|--verchamadosSadmin.php | Página para ver chamados • Feito
 |--tecnico/
-|	|--chamadosabertosTec.php | Página para ver chamados abertos • 
-|	|--chamadosconcluidosTec.php | Página para ver chamados concluídos • 
-|	|--processaChamado.php | Página para processar chamados • 
-|	|--tecnicoHome.php | Página inicial do técnico • 
-|	|--verchamadosTec.php | Página para ver chamados • 
-|	|--conexaodbAdmin.php | Página para puxar dados do banco • 
-|	|--conexao.php | Página para conectar ao banco • 
-|	|--fazerchamadoTec.php | Página para fazer chamados • 
-|	|--logout.php | Página para fazer logout • 
-|	|--ver1chamadoTecnico.php | Página para ver chamados •
+|	|--chamadosabertosTec.php | Página para ver chamados abertos • Feito
+|	|--chamadosconcluidosTec.php | Página para ver chamados concluídos • Feito
+|	|--conexao.php | Página para conectar ao banco • Feito
+|	|--conexaodbAdmin.php | Página para puxar dados do banco • Feito
+|	|--fazerchamadoTec.php | Página para fazer chamados • Feito
+|	|--logout.php | Página para fazer logout • Feito
+|	|--processaChamado.php | Página para processar chamados • Feito
+|	|--tecnicoHome.php | Página inicial do técnico • Feito
+|	|--ver1chamadoTecnico.php | Página para ver chamados • Feito
+|	|--verchamadosTec.php | Página para ver chamados • Feito
 |--autenticarUsuario.php | Página para autenticar usuário • Feito
 |--autenticarusuario(naousar).php | Página para autenticar usuário • Feito -- Não sera usada
 |--conexao.php | Página para conectar ao banco • Feito
