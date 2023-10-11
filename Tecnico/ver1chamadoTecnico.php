@@ -16,7 +16,7 @@
 ?>
 <?php
   include("conexao.php");
-  $sql_code = "select contador,local,tecnico,datahora,status,servico,serviexecu,datahoraaber,datahorafim from chamados WHERE  contador='$chamado'";
+  $sql_code = "select contador,local,tecnico,datahora,status,servico,serviexecu,datahoraaber,datahorafim from chamados WHERE contador='$chamado'";
   $execute = $conn->query($sql_code) or die($conn->error);
   $produto = $execute->fetch_assoc();
 ?>
