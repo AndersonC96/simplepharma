@@ -19,7 +19,7 @@
           </div>
           <div class="modal-body">Chamado realizado com sucesso !</div>
           <div class="modal-footer">
-            <a class="btn btn-success" href="Tecnico-Home.php">Entendido</a>
+            <a class="btn btn-success" href="tecnicoHome.php">Entendido</a>
           </div>
         </div>
       </div>
