@@ -11,10 +11,13 @@ project/
 |	|--deleteTec.php                | Página para deletar técnicos          • Feito
 |	|--deleteTec2.php               | Página para deletar técnicos          • Feito -- Não sera usada
 |	|--inseretecnicoRes.php         | Página para inserir técnicos          • Feito
+|	|--insereUsuario.php            | Página para inserir técnicos          • 
 |	|--logout.php                   | Página para fazer logout              • Feito
 |	|--processacadTecnic.php        | Página para cadastrar técnicos        • Feito
+|   |--processacadUsuario.php       | Página para cadastrar usuários        • 
 |	|--processainsereChamado.php    | Página para inserir chamados          • Feito
 |	|--removetecnicoRes.php         | Página para remover técnicos          • Feito
+|	|--removeUsuario.php            | Página para remover técnicos          • 
 |	|--ver1chamadoAdmin.php         | Página para ver chamados              • Feito
 |	|--verchamadosAdmin.php         | Página para ver chamados              • Feito
 |	|--verTecnicos.php              | Página para ver técnicos              • Feito
