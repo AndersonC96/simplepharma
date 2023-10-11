@@ -32,7 +32,7 @@
           </div>
           <div class="modal-body">Técnico removido com sucesso !</div>
           <div class="modal-footer">
-            <a class="btn btn-sucess btn-lg" href="remove_tecnico_res.php">Entendido</a>
+            <a class="btn btn-sucess btn-lg" href="removetecnicoRes.php">Entendido</a>
           </div>
         </div>
       </div>
