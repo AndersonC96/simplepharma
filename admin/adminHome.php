@@ -56,6 +56,14 @@
 								<li><a href="verTecnicos.php">Ver Técnicos</a></li>
 							</ul>
 						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuário<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="insereUsuario.php">Inserir Usuário</a></li>
+								<li><a href="removetecnicoRes.php">Remover Usuário</a></li>
+								<li><a href="verTecnicos.php">Ver Usuários</a></li>
+							</ul>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
