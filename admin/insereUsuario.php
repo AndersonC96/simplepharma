@@ -56,6 +56,14 @@
 								<li><a href="verTecnicos.php">Ver Técnicos</a></li>
 							</ul>
 						</li>
+                        <li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuário<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="insereUsuario.php">Inserir Usuário</a></li>
+								<li><a href="removetecnicoRes.php">Remover Usuário</a></li>
+								<li><a href="verTecnicos.php">Ver Usuários</a></li>
+							</ul>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
@@ -65,18 +73,18 @@
 		</nav>
 		<div class="container">
 			<h2>Preencha os campos</h2>
-			<form method="POST" action="processacadTecnic.php">
+			<form method="POST" action="processacadUsuario.php">
 				<div class="form-group">
-					<label for="nomecomptec">Nome Completo</label>
-					<input type="text" class="form-control" id="nomecomptec" placeholder="Nome do técnico" name="nomecomptec" required />
+					<label for="nomecompusu">Nome Completo</label>
+					<input type="text" class="form-control" id="nomecompusu" placeholder="Nome do usuário" name="nomecompusu" required />
 				</div>
 				<div class="form-group">
-					<label for="nomesistec">Nome Sistema</label>
-					<input type="text" class="form-control" id="nomesistec" placeholder="Nome no sistema do técnico" name="nomesistec" required />
+					<label for="nomesisusu">Nome Sistema</label>
+					<input type="text" class="form-control" id="nomesisusu" placeholder="Nome no sistema do usuário" name="nomesisusu" required />
 				</div>
 				<div class="form-group">
-					<label for="nomesistec">Senha</label>
-					<input type="text" class="form-control" id="senhatec" placeholder="Senha para o técnico" name="senhatec" required />
+					<label for="nomesisusu">Senha</label>
+					<input type="text" class="form-control" id="senhausu" placeholder="Senha para o usuário" name="senhausu" required />
 				</div>
 				<button type="submit" class="btn btn-default">Inserir Técnico</button>
 			</form>
