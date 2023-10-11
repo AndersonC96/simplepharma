@@ -92,7 +92,7 @@
           <div class='col-sm-6'>
             <div class="form-group">
               <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control" name="dateFrom" required />
+                <input type='text' class="form-control" name="datahoraaber" required />
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -112,7 +112,7 @@
           <div class='col-sm-6'>
             <div class="form-group">
               <div class='input-group date' id='datetimepicker2'>
-                <input type='text' class="form-control" name="dateFrom2" required />
+                <input type='text' class="form-control" name="datahorafim" required />
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
