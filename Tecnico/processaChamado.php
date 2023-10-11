@@ -34,9 +34,9 @@
 <?php
   include_once("conexao.php");
   $servicoexecutado = $_POST['servicoexe'];
-  $datainiciofez = $_POST['datefrom'];
+  $datainiciofez = $_POST['datahoraaber'];
   $numeroos = $_POST['var'];
-  $datafimfez = $_POST['datefrom2'];
+  $datafimfez = $_POST['datahorafim'];
   $status = "Feito";
   $query = "UPDATE chamados SET serviexecu = '".$servicoexecutado."', datahoraaber = '".$datainiciofez."', datahorafim = '".$datafimfez."',status = '".$status."' WHERE (contador = ".$numeroos.")";
   $resultado_usuario = mysqli_query($conn, $query);
