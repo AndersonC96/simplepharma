@@ -39,7 +39,7 @@
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="Admin-Home.php">Home</a></li>
+						<li class="active"><a href="adminHome.php">Home</a></li>
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Chamados<span class="caret"></span></a>
 							<ul class="dropdown-menu">
