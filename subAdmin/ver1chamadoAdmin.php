@@ -15,7 +15,7 @@
 ?>
 <?php
 	include("conexao.php");
-	$sql_code = "select contador,local,tecnico,datahora,status,servico,serviexecu,datahoraaber,datahorafim from chamados WHERE  contador='$chamado'";
+	$sql_code = "select usuario,contador,local,tecnico,datahora,status,servico,serviexecu,datahoraaber,datahorafim from chamados WHERE contador='$chamado'";
 	$execute = $conn->query($sql_code) or die($conn->error);
 	$produto = $execute->fetch_assoc();
 ?>
@@ -65,6 +65,8 @@
 		<div class="container">
 			<h2 class="text-center"><strong>Dados do Chamado <?php echo $chamado;?></strong></h2>
 			<div class="panel panel-default">
+				<div class="panel-heading"><strong>Usuário</strong></div>
+				<div class="panel-body"><?php echo $produto['usuario'];?></div>
 				<div class="panel-heading"><strong>Local do chamado</strong></div>
 				<div class="panel-body"><?php echo $produto['local'];?></div>
 				<div class="panel-heading"><strong>Serviço Solicitado</strong></div>
