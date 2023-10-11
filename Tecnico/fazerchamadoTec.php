@@ -11,7 +11,7 @@
   $itens_por_pagina = 10;
   $pagina = intval($_GET['pagina']);
   $tecnico = $_SESSION['sess_username'];
-  $sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE  contador='$chamado'";
+  $sql_code = "select contador,local,tecnico,datahora,status,servico from chamados WHERE contador='$chamado'";
   $execute = $conn->query($sql_code) or die($conn->error);
   $produto = $execute->fetch_assoc();
   $num = $execute->num_rows;
@@ -81,7 +81,7 @@
     </div>
     <div class="container">
       <h2>Preencha</h2>
-      <form method="POST" action="Processa-chamado.php">
+      <form method="POST" action="processaChamado.php">
         <div class="form-group">
           <input type="hidden" name="var" id="var" value="<?php print $chamado ?>" />
           <label for="comment">Serviço Executados</label>
