@@ -1,10 +1,11 @@
 <?php
-    session_start();
-    $role = $_SESSION['sess_userrole'];
-    if(!isset($_SESSION['sess_username']) || $role!="tecnico"){
-      header('Location: ../index.php?err=2');
-    }
-    $chamado = $_GET["chamado"];
+  error_reporting(0);
+  session_start();
+  $role = $_SESSION['sess_userrole'];
+  if(!isset($_SESSION['sess_username']) || $role!="tecnico"){
+    header('Location: ../index.php?err=2');
+  }
+  $chamado = $_GET["chamado"];
 ?>
 <?php
   include("conexao.php");
