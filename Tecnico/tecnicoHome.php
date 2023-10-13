@@ -36,7 +36,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chamados</a>
                             <ul class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                                <li><a class="dropdown-item" href="chamadosabertosTec.php">Chamados em Aberto<span class="badge badge-danger"><?php echo $num; ?></span></a></li>
+                                <li><a class="dropdown-item" href="chamadosabertosTec.php">Chamados em Aberto <span class="badge bg-danger"><?php echo $num; ?></span></a></li>
                                 <li><a class="dropdown-item" href="chamadosconcluidosTec.php">Chamados Concluídos</a></li>
                                 <li><a class="dropdown-item" href="verchamadosTec.php">Listar Chamado</a></li>
                             </ul>
