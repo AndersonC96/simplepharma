@@ -70,7 +70,7 @@
                 <br>
                 <div class="form-group">
                     <label for="nomesistec"><b>Nome Sistema</b></label>
-                    <input type="text" class="form-control" id="nomesistec" placeholder="Nome do técnico no sistema" name="nomesistec" required />
+                    <input type="text" class="form-control" id="nomesistec" placeholder="Nome de usuário" name="nomesistec" required />
                 </div>
                 <br>
                 <div class="form-group">
