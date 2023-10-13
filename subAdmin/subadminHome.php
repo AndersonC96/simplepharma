@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Área Administrativa Home</title>
+		<title><?php echo $_SESSION['sess_usersisname']; ?> | Área Administrativa | Home</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -56,8 +56,7 @@
 			</div>
 		</nav>
 		<div class="container">
-			<h2>Modelo Beta de testes</h2>
-			<h4>Bem vindo <?php echo $_SESSION['sess_usersisname'];?></h4>
+			<h1>Bem-vindo, <b style="color: rgb(83 168 177)"><?php echo $_SESSION['sess_usersisname']; ?></b></h2>
 		</div>
 	</body>
 </html>
