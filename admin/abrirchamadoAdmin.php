@@ -69,6 +69,10 @@
 			<h2>Preencha os campos</h2>
 			<form method="POST" action="processainsereChamado.php">
 				<div class="form-group">
+					<label for="username">Nome do Usuário</label>
+					<input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['sess_usersisname'];?>" readonly>
+				</div>
+				<div class="form-group">
 					<label for="sel1">Selecione um local</label>
 					<select class="form-control" id="local" name="local">
 						<option>Simple Pharma (São Paulo)</option>
