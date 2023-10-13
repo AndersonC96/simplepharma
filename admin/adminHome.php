@@ -63,7 +63,7 @@
         </nav>
         <br>
         <div class="container">
-            <h4>Bem-vindo, <b style="color: rgb(83 168 177)"><?php echo $_SESSION['sess_usersisname']; ?></b></h4>
+            <h1>Bem-vindo, <b style="color: rgb(83 168 177)"><?php echo $_SESSION['sess_usersisname']; ?></b></h1>
             <p>Algumas funcionalidades podem não estar ativas ainda.</p>
         </div>
     </body>
