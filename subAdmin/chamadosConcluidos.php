@@ -100,8 +100,8 @@
             </table>
             <nav>
                 <ul class="pagination">
-                    <li>
-                        <a href="chamadosConcluidos.php?pagina=0" aria-label="Previous">
+                    <li class="page-item">
+                        <a class="page-link" href="chamadosConcluidos.php?pagina=0" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -111,10 +111,10 @@
                             if($pagina == $i)
                                 $estilo = "class=\"active\"";
                     ?>
-                    <li <?php echo $estilo; ?> ><a class="page-link" href="chamadosConcluidos.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
+                    <li class="page-item" <?php echo $estilo; ?>><a class="page-link" href="chamadosConcluidos.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
                     <?php } ?>
-                    <li>
-                        <a href="chamadosConcluidos.php?pagina=<?php echo $num_paginas - 1; ?>" aria-label="Next">
+                    <li class="page-item">
+                        <a class="page-link" href="chamadosConcluidos.php?pagina=<?php echo $num_paginas - 1; ?>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -123,7 +123,7 @@
             <?php } ?>
         </div>
         <script>
-            $(document).ready(function (){
+            $(document).ready(function(){
                 $('[data-toggle="tooltip"]').tooltip();
             });
         </script>
