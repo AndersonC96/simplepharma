@@ -91,7 +91,7 @@
                     <label for="id"><b>Técnico</b></label>
                     <?php
                         ini_set('default_charset', 'UTF-8');
-                        $conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die('Cannot connect to db');
+                        $conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die ('Cannot connect to db');
                         $result = $conn->query("select id, nome from tecnicos");
                         echo "<select name='id'>";
                         while($row = $result->fetch_assoc()){
