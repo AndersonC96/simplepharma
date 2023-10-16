@@ -95,8 +95,8 @@
             </table>
             <nav>
                 <ul class="pagination">
-                    <li>
-                        <a href="chamadosconcluidosTec.php?pagina=0" aria-label="Previous">
+                    <li class="page-item">
+                        <a class="page-link" href="chamadosConcluidos.php?pagina=0" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -106,10 +106,10 @@
                             if($pagina == $i)
                                 $estilo = "class=\"active\"";
                     ?>
-                    <li <?php echo $estilo; ?>><a href="chamadosconcluidosTec.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
+                    <li class="page-item" <?php echo $estilo; ?>><a class="page-link" href="chamadosconcluidosTec.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
                     <?php } ?>
-                    <li>
-                        <a href="chamadosconcluidosTec.php?pagina=<?php echo $num_paginas - 1; ?>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                    <li class="page-item">
+                        <a class="page-link" href="chamadosconcluidosTec.php?pagina=<?php echo $num_paginas - 1; ?>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
                     </li>
                 </ul>
             </nav>
