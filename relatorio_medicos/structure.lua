@@ -1,10 +1,6 @@
 project/
-|---assets/
-|   |---css/
-|   |---js/
-|   |---images/
 |---includes/
-|   |---db.php | Página para conectar ao banco • Feito
+|   |---db.php
 |   |---functions.php
 |---templates/
 |   |---header.php
