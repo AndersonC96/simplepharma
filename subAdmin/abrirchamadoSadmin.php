@@ -59,8 +59,20 @@
                 <div class="form-group">
                     <label for="local"><b>Selecione um local</b></label>
                     <select class="form-select" id="local" name="local">
-                        <option>Simple Pharma (São Paulo)</option>
-                        <option>2</option>
+                        <option>Almoxarifado</option>
+                        <option>Conferência final</option>
+                        <option>Conferência inicial</option>
+                        <option>Desvincular</option>
+                        <option>Expedição</option>
+                        <option>Financeiro</option>
+                        <option>Inclusão</option>
+                        <option>Laboratório</option>
+                        <option>Orçamento</option>
+                        <option>RH</option>
+                        <option>Recepção</option>
+                        <option>SAC</option>
+                        <option>Uso contínuo</option>
+                        <option>Vendas</option>
                     </select>
                     <br>
                 </div>
