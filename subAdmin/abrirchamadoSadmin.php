@@ -77,8 +77,8 @@
                     <br>
                 </div>
                 <div class="form-group">
-                    <label for="comment"><b>Serviço</b></label>
-                    <textarea name="servico" class="form-control" rows="5" id="comment" required></textarea>
+                    <label for="comment"><b>Ocorrência</b></label>
+                    <textarea name="servico" class="form-control" rows="5" id="comment" placeholder="Descreva sua ocorrência"required></textarea>
                 </div>
                 <br>
                 <div class="form-group">
