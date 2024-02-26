@@ -96,7 +96,7 @@
                 <br>
                 <div class="form-group">
                     <label for="servico"><b>Ocorrência</b></label>
-                    <textarea name="servico" class="form-control" rows="5" id="servico" placeholder="Descreva seu problema" required></textarea>
+                    <textarea name="servico" class="form-control" rows="5" id="servico" placeholder="Descreva sua ocorrência" required></textarea>
                 </div>
                 <br>
                 <div class="form-group">
