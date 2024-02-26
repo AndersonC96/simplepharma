@@ -61,11 +61,11 @@
         </nav>
         <br>
         <div class="container">
-            <h2>Preencha com o nome no sistema do técnico que deseja remover</h2>
+            <h2>Preencha com o nome de usuário do técnico que deseja remover</h2>
             <form method="POST" action="deleteTec.php">
                 <div class="form-group">
                     <label for="tecnicoex"><b>Nome</b></label>
-                    <input type="text" class="form-control" id="tecex" placeholder="Nome no sistema do técnico a ser removido" name="tecex" required />
+                    <input type="text" class="form-control" id="tecex" placeholder="Nome de usuário do técnico a ser removido" name="tecex" required />
                 </div>
                 <br>
                 <button type="submit" class="btn btn-danger">Remover Técnico</button>
