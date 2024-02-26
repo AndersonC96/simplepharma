@@ -17,7 +17,7 @@
           <div class="modal-header">
             <h4 class="modal-title">Atenção</h4>
           </div>
-          <div class="modal-body">Chamado Aberto com sucesso !</div>
+          <div class="modal-body">Chamado Aberto com sucesso!</div>
           <div class="modal-body">Tempo médio para atendimento: 30 Minutos</div>
           <div class="modal-footer">
             <a class="btn btn-success" href="adminHome.php">Entendido</a>
