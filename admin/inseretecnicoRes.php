@@ -69,7 +69,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="nomesistec"><b>Nome Sistema</b></label>
+                    <label for="nomesistec"><b>Nome de usuário</b></label>
                     <input type="text" class="form-control" id="nomesistec" placeholder="Nome de usuário" name="nomesistec" required />
                 </div>
                 <br>
