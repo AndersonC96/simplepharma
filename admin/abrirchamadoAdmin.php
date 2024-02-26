@@ -95,8 +95,8 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="servico"><b>Serviço</b></label>
-                    <textarea name="servico" class="form-control" rows="5" id="servico" required></textarea>
+                    <label for="servico"><b>Ocorrência</b></label>
+                    <textarea name="servico" class="form-control" rows="5" id="servico" placeholder="Descreva seu problema" required></textarea>
                 </div>
                 <br>
                 <div class="form-group">
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success">Inserir Chamado</button>
+                <button type="submit" class="btn btn-success">Abrir Chamado</button>
             </form>
         </div>
         <script>
