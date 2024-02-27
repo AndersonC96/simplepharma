@@ -34,13 +34,14 @@
     ?>
     <?php
       include_once("conexao.php");
+      $id_usuario = $_POST['id_usuario'];
       $usuario = $_POST['username'];
       $local = $_POST['local'];
       $servico = $_POST['servico'];
       $tecnico = $_POST['id'];
       $data_atendimento = $_POST['dateFrom'];
       $status = "Aberto";
-      $result_usuario = "INSERT INTO chamados (usuario,local,datahora,tecnico,status,servico) VALUES ('$usuario','$local','$data_atendimento','$tecnico','$status','$servico')";
+      $result_usuario = "INSERT INTO chamados (usuario,local,datahora,tecnico,status,servico,id_usuario) VALUES ('$usuario','$local','$data_atendimento','$tecnico','$status','$servico','$id_usuario')";
       $resultado_usuario = mysqli_query($conn, $result_usuario);
       if(mysqli_affected_rows($conn) != 0){
         echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
