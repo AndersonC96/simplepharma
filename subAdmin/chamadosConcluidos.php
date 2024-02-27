@@ -4,11 +4,13 @@
     $itens_por_pagina = 10;
     $pagina = intval($_GET['pagina']);
     $item = $pagina * $itens_por_pagina;
-    $sql_code = "select contador, local, tecnico, datahora, status, servico from chamados WHERE status='Feito' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
+    //$sql_code = "select contador, local, tecnico, datahora, status, servico from chamados WHERE status='Feito' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
+    $sql_code = "select contador, local, tecnico, datahora, status, servico from chamados WHERE status='Feito' AND usuario='{$_SESSION['sess_usersisname']}' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
     $execute = $conn->query($sql_code) or die ($conn->error);
     $produto = $execute->fetch_assoc();
     $num = $execute->num_rows;
-    $num_total = $conn->query("select contador, local, tecnico, datahora, status, servico from chamados WHERE status='Feito'")->num_rows;
+    //$num_total = $conn->query("select contador, local, tecnico, datahora, status, servico from chamados WHERE status='Feito'")->num_rows;
+    $num_total = $conn->query("select contador, local, tecnico, datahora, status, servico from chamados WHERE status='Feito' AND usuario='{$_SESSION['sess_usersisname']}'")->num_rows;
     $num_paginas = ceil($num_total / $itens_por_pagina);
 ?>
 <?php
