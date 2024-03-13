@@ -57,8 +57,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
                             <ul class="dropdown-menu" aria-labelledby="tecnicoDropdown">
-                                <li><a class="dropdown-item" href="insereUsuario.php">Inserir Usuários</a></li>
-                                <li><a class="dropdown-item" href="removeUsuario.php">Remover Usuários</a></li>
+                                <li><a class="dropdown-item" href="insereUsuario.php">Inserir Usuário</a></li>
+                                <li><a class="dropdown-item" href="removeUsuario.php">Remover Usuário</a></li>
                                 <li><a class="dropdown-item" href="verUsuarios.php">Ver Usuários</a></li>
                             </ul>
                         </li>
