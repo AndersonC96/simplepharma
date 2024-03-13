@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0 py-3">
             <div class="container-xl">
                 <a class="navbar-brand" href="#">
-                    <img src="https://preview.webpixels.io/web/img/logos/clever-light.svg" class="h-8" alt="...">
+                    <img src="https://static.wixstatic.com/media/fef91e_c3f644e14da442178f706149ae38d838~mv2.png/v1/crop/x_0,y_24,w_436,h_262/fill/w_120,h_71,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/CAPA-03.png" class="h-12" alt="...">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -52,6 +52,14 @@
                                 <li><a class="dropdown-item" href="inseretecnicoRes.php">Inserir Técnico</a></li>
                                 <li><a class="dropdown-item" href="removetecnicoRes.php">Remover Técnico</a></li>
                                 <li><a class="dropdown-item" href="verTecnicos.php">Ver Técnicos</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
+                            <ul class="dropdown-menu" aria-labelledby="tecnicoDropdown">
+                                <li><a class="dropdown-item" href="inseretecnicoRes.php">Inserir Usuários</a></li>
+                                <li><a class="dropdown-item" href="removetecnicoRes.php">Remover Usuários</a></li>
+                                <li><a class="dropdown-item" href="verTecnicos.php">Ver Usuários</a></li>
                             </ul>
                         </li>
                     </div>
