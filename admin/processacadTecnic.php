@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Cadastro tecnico </title>
+		<title>Cadastro Técnico</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -30,7 +30,7 @@
 					<div class="modal-header">
 						<h4 class="modal-title">Atenção</h4>
 					</div>
-					<div class="modal-body">Cadastro de técnico realizado com sucesso !</div>
+					<div class="modal-body">Cadastro de técnico realizado com sucesso!</div>
 					<div class="modal-footer">
 						<a class="btn btn-success" href="inseretecnicoRes.php">Entendido</a>
 					</div>
