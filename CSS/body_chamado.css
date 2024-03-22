@@ -1,0 +1,27 @@
+body{
+    background-color: #f4f4f4;
+}
+.container{
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form-group{
+    margin-bottom: 1rem;
+}
+.btn-success{
+    background-color: #00A6AC;
+    border-color: #00A6AC;
+}
+.btn-success:hover{
+    background-color: #008d93;
+    border-color: #007a83;
+}
+.datepicker{
+    border-radius: 5px;
+}
+.input-group-addon{
+    cursor: pointer;
+}
