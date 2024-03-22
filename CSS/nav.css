@@ -1,34 +1,25 @@
 @import url(https://unpkg.com/@webpixels/css@1.0/dist/index.css);
-/* Navbar Customizations */
-.navbar {
-    background-color: #f8f9fa; /* Cinza claro */
-    padding: 0.5rem 1rem; /* Tornando a navbar um pouco menor */
+.navbar{
+    background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
 }
-
-.navbar-brand, .nav-link {
-    color: #00A6AC !important; /* Cor dos textos da navbar */
+.navbar-brand, .nav-link{
+    color: #00A6AC !important;
 }
-
-.nav-link {
-    margin-right: 1rem; /* Espaçamento entre os itens da navbar */
+.nav-link{
+    margin-right: 1rem;
 }
-
-/* Botão Sair */
-.btn-secondary {
-    background-color: #00A6AC; /* Cor de fundo do botão */
-    border-color: #00A6AC; /* Cor da borda do botão */
+.btn-secondary{
+    background-color: #00A6AC;
+    border-color: #00A6AC;
 }
-
-.btn-secondary:hover {
-    background-color: #008d93; /* Cor de fundo do botão ao passar o mouse */
-    border-color: #007a83; /* Cor da borda do botão ao passar o mouse */
+.btn-secondary:hover{
+    background-color: #008d93;
+    border-color: #007a83;
 }
-
-.btn-secondary:focus, .btn-secondary.focus {
-    box-shadow: 0 0 0 0.25rem rgba(0, 166, 172, 0.5); /* Personalizando o foco do botão */
+.btn-secondary:focus, .btn-secondary.focus{
+    box-shadow: 0 0 0 0.25rem rgba(0, 166, 172, 0.5);
 }
-
-/* Texto do botão */
-.btn-secondary {
-    color: #ffffff !important; /* Cor do texto (branco) */
+.btn-secondary{
+    color: #ffffff !important;
 }
