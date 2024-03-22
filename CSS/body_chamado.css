@@ -25,3 +25,30 @@ body{
 .input-group-addon{
     cursor: pointer;
 }
+.table thead th{
+    background-color: #008d93;
+    color: #ffffff;
+}
+.table tbody tr:nth-child(odd){
+    background-color: #f2f2f2;
+}
+.table tbody tr:nth-child(even){
+    background-color: #ffffff;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.pagination li a{
+    color: #008d93;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid #008d93;
+    margin: 0 2px;
+    border-radius: 5px;
+}
+.pagination li a:hover, .pagination li.active a{
+    background-color: #008d93;
+    color: #ffffff;
+}
