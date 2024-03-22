@@ -36,31 +36,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-lg-auto">
-                        <a class="nav-item nav-link active" href="adminHome.php" aria-current="page">Home</a>
+                        <a class="nav-item nav-link active" href="subadminHome.php" aria-current="page">Home</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chamados</a>
                             <ul class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                                <li><a class="dropdown-item" href="abrirchamadoAdmin.php">Abrir Chamado</a></li>
-                                <li><a class="dropdown-item" href="deletarchamadoAdmin.php">Deletar Chamado</a></li>
+                                <li><a class="dropdown-item" href="abrirchamadoSadmin.php">Abrir Chamado</a></li>
+                                <li><a class="dropdown-item" href="deletarchamadoSadmin.php">Deletar Chamado</a></li>
                                 <li><a class="dropdown-item" href="chamadosAbertos.php">Chamados em Aberto <span class="badge bg-danger"><?php echo $num; ?></span></a></li>
                                 <li><a class="dropdown-item" href="chamadosConcluidos.php">Chamados Concluídos</a></li>
-                                <li><a class="dropdown-item" href="verchamadosAdmin.php">Listar Chamado</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Técnico</a>
-                            <ul class="dropdown-menu" aria-labelledby="tecnicoDropdown">
-                                <li><a class="dropdown-item" href="inseretecnicoRes.php">Inserir Técnico</a></li>
-                                <li><a class="dropdown-item" href="removetecnicoRes.php">Remover Técnico</a></li>
-                                <li><a class="dropdown-item" href="verTecnicos.php">Ver Técnicos</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
-                            <ul class="dropdown-menu" aria-labelledby="tecnicoDropdown">
-                                <li><a class="dropdown-item" href="insereUsuario.php">Inserir Usuário</a></li>
-                                <li><a class="dropdown-item" href="removeUsuario.php">Remover Usuário</a></li>
-                                <li><a class="dropdown-item" href="verUsuarios.php">Ver Usuários</a></li>
+                                <li><a class="dropdown-item" href="verchamadosSadmin.php">Listar Chamado</a></li>
                             </ul>
                         </li>
                     </div>
