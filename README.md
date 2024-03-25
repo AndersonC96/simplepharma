@@ -1,40 +1,43 @@
-Sistema de Chamados
-Este é um sistema de chamados desenvolvido para facilitar a gestão e acompanhamento de solicitações e problemas dentro de uma organização. Com ele, você pode registrar novos chamados, atribuí-los a responsáveis, acompanhar o status de cada chamado e manter um histórico completo das atividades realizadas.
+# Sistema de Gestão de Chamados (SGC)
 
-Funcionalidades Principais
-Registro de Chamados: Os usuários podem abrir novos chamados, fornecendo detalhes sobre o problema ou solicitação.
+Bem-vindo ao **Sistema de Gestão de Chamados (SGC)**, uma solução inovadora e eficiente projetada para otimizar a gestão e o acompanhamento de solicitações e problemas dentro de uma organização. Com o SGC, é possível registrar, atribuir, acompanhar e manter um histórico detalhado de cada chamado, promovendo uma comunicação clara e eficaz entre os membros da equipe.
 
-Atribuição de Responsáveis: Os chamados podem ser atribuídos a membros específicos da equipe, para garantir uma responsabilidade clara.
+## Principais Funcionalidades
 
-Acompanhamento de Status: Os usuários podem acompanhar o status de seus chamados, desde a abertura até a resolução.
+- **Registro de Chamados**: Crie novos chamados com todos os detalhes necessários sobre o problema ou solicitação.
+- **Atribuição de Responsabilidades**: Atribua chamados a membros específicos da equipe para garantir uma resolução eficiente e responsável.
+- **Acompanhamento de Status**: Monitore o progresso de cada chamado do início ao fim, com atualizações de status em tempo real.
+- **Histórico Completo**: Acesse um registro detalhado de todas as atividades relacionadas a cada chamado, facilitando análises e auditorias futuras.
 
+## Primeiros Passos
 
-Histórico Completo: O sistema mantém um histórico completo de todas as atividades relacionadas a cada chamado, incluindo quem realizou quais ações e quando.
+### Registrando um Chamado
 
-Como Usar
-Registro de Chamados:
+1. Navegue até `Chamados → Abrir Chamado`.
+2. Preencha o formulário com as informações necessárias.
+3. Clique em `Registrar Chamado` para logar sua solicitação.
 
-Clique no botão "Chamados → Abrir Chamado".
-Preencha o formulário com as informações necessárias.
-Clique em "Inserir Chamado" para registrar o chamado.
-Atribuição de Responsáveis:
+### Atribuindo Responsabilidades
 
-Após registrar um chamado, você pode atribuí-lo a um membro da equipe responsável por resolver o problema.
-Selecione o chamado desejado e clique na opção "Atribuir".
-Escolha o membro da equipe na lista de usuários disponíveis.
-Acompanhamento de Status:
+1. Após registrar um chamado, selecione-o e clique em `Atribuir`.
+2. Escolha um membro da equipe na lista de usuários disponíveis para responsabilizar-se pela resolução.
 
-Na página principal, você verá uma lista de todos os chamados registrados, juntamente com seu status atual.
-Você pode filtrar os chamados por status (aberto, em andamento, fechado, etc.) para facilitar o acompanhamento.
-Comentários e Atualizações:
+### Acompanhamento de Status
 
-Ao visualizar um chamado, você pode adicionar comentários para fornecer informações adicionais ou fazer perguntas.
-Os responsáveis pelo chamado podem atualizar seu status e adicionar notas sobre o progresso realizado.
-Histórico Completo:
+- Na página principal, você encontrará uma lista de todos os chamados registrados, juntamente com seu status atual. Utilize filtros por status (aberto, em andamento, fechado, etc.) para facilitar o acompanhamento.
 
-Cada chamado possui um registro completo de todas as atividades relacionadas a ele.
-Você pode visualizar o histórico completo para entender quem fez o quê e quando.
-Tecnologias Utilizadas
-Frontend: HTML, Bootstrap
-Backend: PHP
-Banco de Dados: PHPMyAdmin (MySQL)
+### Comentários e Atualizações
+
+- Ao visualizar um chamado, adicione comentários para fornecer informações adicionais ou fazer perguntas. Os responsáveis podem atualizar o status do chamado e adicionar notas sobre o progresso.
+
+### Histórico Completo
+
+- Cada chamado possui um histórico completo de todas as atividades relacionadas, permitindo uma revisão detalhada de quem fez o quê e quando.
+
+## Tecnologias Utilizadas
+
+- **Frontend**: HTML, Bootstrap
+- **Backend**: PHP
+- **Banco de Dados**: MySQL (via PHPMyAdmin)
+
+Este projeto é aberto à contribuições! Se você tem ideias para melhorá-lo ou quer ajudar com o desenvolvimento, sinta-se livre para contribuir.
