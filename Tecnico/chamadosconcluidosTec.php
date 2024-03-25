@@ -68,7 +68,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-lg-auto">
-                        <a class="nav-item nav-link active" href="subadminHome.php" aria-current="page">Home</a>
+                        <a class="nav-item nav-link active" href="tecnicoHome.php" aria-current="page">Home</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chamados</a>
                             <ul class="dropdown-menu" aria-labelledby="chamadosDropdown">
@@ -125,7 +125,7 @@
                 <nav>
                     <ul class="pagination">
                         <li class="page-item">
-                            <a class="page-link" href="chamadosConcluidos.php?pagina=0" aria-label="Previous">
+                            <a class="page-link" href="chamadosconcluidosTec.php?pagina=0" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
@@ -135,10 +135,10 @@
                                 if($pagina == $i)
                                     $estilo = "class=\"active\"";
                         ?>
-                        <li class="page-item" <?php echo $estilo; ?>><a class="page-link" href="chamadosConcluidos.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
+                        <li class="page-item" <?php echo $estilo; ?>><a class="page-link" href="chamadosconcluidosTec.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
                         <?php } ?>
                         <li class="page-item">
-                            <a class="page-link" href="chamadosConcluidos.php?pagina=<?php echo $num_paginas - 1; ?>" aria-label="Next">
+                            <a class="page-link" href="chamadosconcluidosTec.php?pagina=<?php echo $num_paginas - 1; ?>" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
