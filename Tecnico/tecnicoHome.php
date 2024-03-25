@@ -35,7 +35,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-lg-auto">
-                        <a class="nav-item nav-link active" href="subadminHome.php" aria-current="page">Home</a>
+                        <a class="nav-item nav-link active" href="tecnicoHome.php" aria-current="page">Home</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chamados</a>
                             <ul class="dropdown-menu" aria-labelledby="chamadosDropdown">
