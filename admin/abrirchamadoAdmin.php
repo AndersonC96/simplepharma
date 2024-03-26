@@ -99,6 +99,7 @@
                         <option>Orçamento</option>
                         <option>RH</option>
                         <option>Recepção</option>
+                        <option>Representantes</option>
                         <option>SAC</option>
                         <option>TI</option>
                         <option>Uso contínuo</option>
@@ -107,14 +108,19 @@
                 </div>
                 <br>
                 <div class="form-group">
+                    <label for="titulo"><b>Título do Chamado</b></label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Insira o título do chamado" required>
+                </div>
+                <br>
+                <div class="form-group">
                     <label for="servico"><b>Ocorrência</b></label>
                     <textarea name="servico" class="form-control" rows="5" id="servico" placeholder="Descreva sua ocorrência" required></textarea>
                 </div>
                 <br>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label for="id"><b>Técnico</b></label>
                     <?php
-                        ini_set('default_charset', 'UTF-8');
+                        /*ini_set('default_charset', 'UTF-8');
                         $conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die ('Cannot connect to db');
                         $result = $conn->query("select id, nome from tecnicos");
                         echo "<select name='id'>";
@@ -124,9 +130,9 @@
                             $name = $row['nome'];
                             echo '<option value="' . $name . '">' . $name . '</option>';
                         }
-                        echo $return .= ' </select>';
+                        echo $return .= ' </select>';*/
                     ?>
-                </div>
+                </div>-->
                 <br>
                 <div class="form-group">
                     <label for="datetime"><b>Data</b></label>
