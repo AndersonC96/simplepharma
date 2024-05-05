@@ -16,7 +16,7 @@
 ?>
 <?php
 	include("conexao.php");
-	$sql_code = "select contador,local,tecnico,datahora,status,servico,serviexecu,datahoraaber,datahorafim,usuario from chamados WHERE contador='$chamado'";
+	$sql_code = "select contador,local,tecnico,datahora,status,servico,serviexecu,datahoraaber,datahorafim,usuario,telefone,titulo from chamados WHERE contador='$chamado'";
 	$execute = $conn->query($sql_code) or die($conn->error);
 	$produto = $execute->fetch_assoc();
 ?>
@@ -65,7 +65,7 @@
 							<ul class="dropdown-menu" aria-labelledby="chamadosDropdown">
 								<li><a class="dropdown-item" href="chamadosabertosTec.php">Chamados em Aberto <span class="badge bg-danger"><?php echo $num; ?></span></a></li>
 								<li><a class="dropdown-item" href="chamadosconcluidosTec.php">Chamados Concluídos</a></li>
-								<li><a class="dropdown-item" href="verchamadosTec.php">Listar Chamado</a></li>
+								<li><a class="dropdown-item" href="verchamadosTec.php">Listar Chamados</a></li>
 							</ul>
 						</li>
 					</div>
@@ -84,7 +84,9 @@
 				<div class="card-header"><strong>Informações do Chamado</strong></div>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item"><strong>Usuário:</strong> <?php echo $produto['usuario']; ?></li>
+						<li class="list-group-item"><strong>Telefone:</strong> <?php echo $produto['telefone']; ?></li>
 						<li class="list-group-item"><strong>Local do chamado:</strong> <?php echo $produto['local']; ?></li>
+						<li class="list-group-item"><strong>Título:</strong> <?php echo $produto['titulo']; ?></li>
 						<li class="list-group-item"><strong>Serviço Solicitado:</strong> <?php echo $produto['servico']; ?></li>
 						<li class="list-group-item"><strong>Data e Hora da abertura:</strong> <?php echo $produto['datahora']; ?></li>
 						<li class="list-group-item"><strong>Técnico Responsável:</strong> <?php echo $produto['tecnico']; ?></li>
