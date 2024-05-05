@@ -19,8 +19,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="../img/favicon.png"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <link href="../CSS/nav.css" rel="stylesheet">
         <link href="../CSS/body_chamado.css" rel="stylesheet">
@@ -57,41 +58,46 @@
                 </div>
             </div>
         </nav>
-        <br>
         <div class="container">
             <h2>Preencha os campos</h2>
             <form method="POST" action="processainsereChamado.php">
-                <div class="form-group">
-                    <label for="username"><b>Nome do Usuário</b></label>
-                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['sess_usersisname'];?>" readonly>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="local"><b>Selecione um local</b></label>
-                    <select class="form-select" id="local" name="local">
-                        <option>Almoxarifado</option>
-                        <option>Conferência final</option>
-                        <option>Conferência inicial</option>
-                        <option>Desvincular</option>
-                        <option>Expedição</option>
-                        <option>Financeiro</option>
-                        <option>Inclusão</option>
-                        <option>Laboratório</option>
-                        <option>Orçamento</option>
-                        <option>RH</option>
-                        <option>Recepção</option>
-                        <option>SAC</option>
-                        <option>TI</option>
-                        <option>Uso contínuo</option>
-                        <option>Vendas</option>
-                    </select>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label for="comment"><b>Ocorrência</b></label>
-                    <textarea name="servico" class="form-control" rows="5" id="comment" placeholder="Descreva sua ocorrência"required></textarea>
-                </div>
-                <br>
+            <div class="form-group">
+                <label for="username"><b>Nome do Usuário</b></label>
+                <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['sess_usersisname'];?>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="local"><b>Selecione um local</b></label>
+                <select class="form-select" id="local" name="local">
+                    <option>Almoxarifado</option>
+                    <option>Conferência final</option>
+                    <option>Conferência inicial</option>
+                    <option>Desvincular</option>
+                    <option>Expedição</option>
+                    <option>Financeiro</option>
+                    <option>Inclusão</option>
+                    <option>Laboratório</option>
+                    <option>Orçamento</option>
+                    <option>RH</option>
+                    <option>Recepção</option>
+                    <option>SAC</option>
+                    <option>TI</option>
+                    <option>Uso contínuo</option>
+                    <option>Vendas</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phone"><b>Telefone</b></label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx">
+            </div>
+            <div class="form-group">
+                <label for="titulo"><b>Título</b></label>
+                <textarea name="titulo" class="form-control" rows="5" id="titulo" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="comment"><b>Ocorrência</b></label>
+                <textarea name="servico" class="form-control" rows="5" id="comment" required></textarea>
+            </div>
+            <br>
                 <div class="form-group">
                     <label for="id"><b>Técnico</b></label>
                     <?php
@@ -111,19 +117,24 @@
                 <br>
                 <div class="form-group">
                     <label for="datetime"><b>Data</b></label>
-                    <input type="text" class="form-control" id="datetime" name="dateFrom" required>
+                    <input type="text" class="form-control" id="datetime" name="dateFrom" required readonly>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success">Inserir Chamado</button>
-            </form>
-        </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", function(){
-                var datetimeField = document.getElementById("datetime");
-                if(datetimeField){
-                    datetimeField.value = moment().format("DD/MM/YYYY HH:mm");
-                }
-            });
-        </script>
+            <button type="submit" class="btn btn-success">Inserir Chamado</button>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#phone').mask('(00) 00000-0000');
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var datetimeField = document.getElementById("datetime");
+            if(datetimeField){
+                datetimeField.value = moment().format("DD/MM/YYYY HH:mm");
+            }
+        });
+    </script>
     </body>
 </html>
