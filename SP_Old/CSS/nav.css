@@ -1,0 +1,25 @@
+@import url(https://unpkg.com/@webpixels/css@1.0/dist/index.css);
+.navbar{
+    background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
+}
+.navbar-brand, .nav-link{
+    color: #00A6AC !important;
+}
+.nav-link{
+    margin-right: 1rem;
+}
+.btn-secondary{
+    background-color: #00A6AC;
+    border-color: #00A6AC;
+}
+.btn-secondary:hover{
+    background-color: #008d93;
+    border-color: #007a83;
+}
+.btn-secondary:focus, .btn-secondary.focus{
+    box-shadow: 0 0 0 0.25rem rgba(0, 166, 172, 0.5);
+}
+.btn-secondary{
+    color: #ffffff !important;
+}
