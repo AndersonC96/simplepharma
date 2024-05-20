@@ -108,6 +108,11 @@
                 </div>
                 <br>
                 <div class="form-group">
+                    <label for="phone"><b>Telefone</b></label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx" required>
+                </div>
+                <br>
+                <div class="form-group">
                     <label for="servico"><b>Ocorrência</b></label>
                     <textarea name="servico" class="form-control" rows="5" id="servico" placeholder="Descreva sua ocorrência" required></textarea>
                 </div>
@@ -142,6 +147,11 @@
                 <button type="submit" class="btn btn-success">Abrir Chamado</button>
             </form>
         </div>
+        <script>
+            $(document).ready(function(){
+                $('#phone').mask('(00) 00000-0000');
+            });
+        </script>
         <script>
             $(document).ready(function(){
                 var datetimeInput = $('#datetime');
