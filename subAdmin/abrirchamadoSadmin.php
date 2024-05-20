@@ -61,43 +61,43 @@
         <div class="container">
             <h2>Preencha os campos</h2>
             <form method="POST" action="processainsereChamado.php">
-            <div class="form-group">
-                <label for="username"><b>Nome do Usuário</b></label>
-                <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['sess_usersisname'];?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="local"><b>Selecione um local</b></label>
-                <select class="form-select" id="local" name="local">
-                    <option>Almoxarifado</option>
-                    <option>Conferência final</option>
-                    <option>Conferência inicial</option>
-                    <option>Desvincular</option>
-                    <option>Expedição</option>
-                    <option>Financeiro</option>
-                    <option>Inclusão</option>
-                    <option>Laboratório</option>
-                    <option>Orçamento</option>
-                    <option>RH</option>
-                    <option>Recepção</option>
-                    <option>SAC</option>
-                    <option>TI</option>
-                    <option>Uso contínuo</option>
-                    <option>Vendas</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="phone"><b>Telefone</b></label>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx">
-            </div>
-            <div class="form-group">
-                <label for="titulo"><b>Título</b></label>
-                <textarea name="titulo" class="form-control" rows="5" id="titulo" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="comment"><b>Ocorrência</b></label>
-                <textarea name="servico" class="form-control" rows="5" id="comment" required></textarea>
-            </div>
-            <br>
+                <div class="form-group">
+                    <label for="username"><b>Nome do Usuário</b></label>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['sess_usersisname'];?>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="local"><b>Selecione um local</b></label>
+                    <select class="form-select" id="local" name="local">
+                        <option>Almoxarifado</option>
+                        <option>Conferência final</option>
+                        <option>Conferência inicial</option>
+                        <option>Desvincular</option>
+                        <option>Expedição</option>
+                        <option>Financeiro</option>
+                        <option>Inclusão</option>
+                        <option>Laboratório</option>
+                        <option>Orçamento</option>
+                        <option>RH</option>
+                        <option>Recepção</option>
+                        <option>SAC</option>
+                        <option>TI</option>
+                        <option>Uso contínuo</option>
+                        <option>Vendas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone"><b>Telefone</b></label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx" required>
+                </div>
+                <div class="form-group">
+                    <label for="titulo"><b>Título</b></label>
+                    <textarea name="titulo" class="form-control" rows="5" id="titulo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="comment"><b>Ocorrência</b></label>
+                    <textarea name="servico" class="form-control" rows="5" id="comment" required></textarea>
+                </div>
+                <br>
                 <div class="form-group">
                     <label for="id"><b>Técnico</b></label>
                     <?php
@@ -120,21 +120,21 @@
                     <input type="text" class="form-control" id="datetime" name="dateFrom" required readonly>
                 </div>
                 <br>
-            <button type="submit" class="btn btn-success">Inserir Chamado</button>
-        </form>
-    </div>
-    <script>
-        $(document).ready(function() {
-            $('#phone').mask('(00) 00000-0000');
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function(){
-            var datetimeField = document.getElementById("datetime");
-            if(datetimeField){
-                datetimeField.value = moment().format("DD/MM/YYYY HH:mm");
-            }
-        });
-    </script>
+                <button type="submit" class="btn btn-success">Inserir Chamado</button>
+            </form>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('#phone').mask('(00) 00000-0000');
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                var datetimeField = document.getElementById("datetime");
+                if(datetimeField){
+                    datetimeField.value = moment().format("DD/MM/YYYY HH:mm");
+                }
+            });
+        </script>
     </body>
 </html>
