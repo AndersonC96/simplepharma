@@ -41,8 +41,9 @@
       //$tecnico = $_POST['id'];
       $tecnico = "";
       $data_atendimento = $_POST['dateFrom'];
+      $telefone = $_POST['phone'];
       $status = "Aberto";
-      $result_usuario = "INSERT INTO chamados(usuario,local,titulo,datahora,tecnico,status,servico) VALUES ('$usuario','$local','titulo','$data_atendimento','$tecnico','$status','$servico')";
+      $result_usuario = "INSERT INTO chamados(usuario,local,titulo,datahora,tecnico,status,servico,telefone) VALUES ('$usuario','$local','$titulo','$data_atendimento','$tecnico','$status','$servico','$telefone')";
       $resultado_usuario = mysqli_query($conn, $result_usuario);
       if(mysqli_affected_rows($conn) != 0){
         echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
