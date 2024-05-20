@@ -38,8 +38,8 @@
       $local = $_POST['local'];
       $titulo = $_POST['titulo'];
       $servico = $_POST['servico'];
-      //$tecnico = $_POST['id'];
-      $tecnico = "";
+      $tecnico = $_POST['id'];
+      //$tecnico = "";
       $data_atendimento = $_POST['dateFrom'];
       $telefone = $_POST['phone'];
       $status = "Aberto";
