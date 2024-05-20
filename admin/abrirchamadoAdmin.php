@@ -18,13 +18,11 @@
         <title><?php echo $_SESSION['sess_usersisname']; ?> | Abrir Chamado</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
         <link rel="icon" type="image/png" href="../img/favicon.png"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <link href="../CSS/nav.css" rel="stylesheet">
         <link href="../CSS/body_chamado.css" rel="stylesheet">
     </head>
@@ -76,7 +74,6 @@
                 </div>
             </div>
         </nav>
-        <br>
         <div class="container">
             <h2>Preencha os campos</h2>
             <form method="POST" action="processainsereChamado.php">
@@ -84,9 +81,8 @@
                     <label for="username"><b>Nome do Usuário</b></label>
                     <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['sess_usersisname'];?>" readonly>
                 </div>
-                <br>
                 <div class="form-group">
-                    <label for="local"><b>Selecione um setor</b></label>
+                    <label for="local"><b>Selecione um local</b></label>
                     <select class="form-select" id="local" name="local">
                         <option>Almoxarifado</option>
                         <option>Conferência final</option>
@@ -99,36 +95,37 @@
                         <option>Orçamento</option>
                         <option>RH</option>
                         <option>Recepção</option>
-                        <option>Representantes</option>
                         <option>SAC</option>
                         <option>TI</option>
                         <option>Uso contínuo</option>
                         <option>Vendas</option>
                     </select>
                 </div>
-                <br>
                 <div class="form-group">
                     <label for="phone"><b>Telefone</b></label>
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx" required>
                 </div>
-                <br>
                 <div class="form-group">
-                    <label for="servico"><b>Ocorrência</b></label>
-                    <textarea name="servico" class="form-control" rows="5" id="servico" placeholder="Descreva sua ocorrência" required></textarea>
+                    <label for="titulo"><b>Título</b></label>
+                    <textarea name="titulo" class="form-control" rows="5" id="titulo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="comment"><b>Ocorrência</b></label>
+                    <textarea name="servico" class="form-control" rows="5" id="comment" required></textarea>
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="id"><b>Técnico</b></label>
                     <?php
-                        ini_set('default_charset', 'UTF-8');
+                        ini_set('default_charset','UTF-8');
                         $conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die ('Cannot connect to db');
                         $result = $conn->query("select id, nome from tecnicos");
-                        echo "<select name='id'>";
+                        echo "<select name='id' class='form-select'>";
                         while($row = $result->fetch_assoc()){
                             unset($id, $name);
                             $id = $row['id'];
                             $name = $row['nome'];
-                            echo '<option value="' . $name . '">' . $name . '</option>';
+                            echo '<option value="'.$name.'">'.$name.'</option>';
                         }
                         echo $return .= ' </select>';
                     ?>
@@ -136,15 +133,10 @@
                 <br>
                 <div class="form-group">
                     <label for="datetime"><b>Data</b></label>
-                    <div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control datepicker" name="dateFrom" id="datetime" readonly>
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
-                        </div>
-                    </div>
+                    <input type="text" class="form-control" id="datetime" name="dateFrom" required readonly>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success">Abrir Chamado</button>
+                <button type="submit" class="btn btn-success">Inserir Chamado</button>
             </form>
         </div>
         <script>
@@ -153,27 +145,11 @@
             });
         </script>
         <script>
-            $(document).ready(function(){
-                var datetimeInput = $('#datetime');
-                function formatTwoDigits(number){
-                    return (number < 10 ? '0' : '') + number;
+            document.addEventListener("DOMContentLoaded", function(){
+                var datetimeField = document.getElementById("datetime");
+                if(datetimeField){
+                    datetimeField.value = moment().format("DD/MM/YYYY HH:mm");
                 }
-                var now = new Date();
-                var year = now.getFullYear();
-                var month = formatTwoDigits(now.getMonth() + 1);
-                var day = formatTwoDigits(now.getDate());
-                var hours = formatTwoDigits(now.getHours());
-                var minutes = formatTwoDigits(now.getMinutes());
-                var currentDatetime = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
-                datetimeInput.val(currentDatetime);
-                datetimeInput.datepicker({
-                    format: 'dd/mm/yyyy hh:ii',
-                    todayBtn: "linked",
-                    clearBtn: true,
-                    autoclose: true,
-                    todayHighlight: true,
-                    language: 'pt-BR'
-                });
             });
         </script>
     </body>
