@@ -17,7 +17,7 @@
 					<div class="modal-header">
 						<h4 class="modal-title">Atenção</h4>
 					</div>
-					<div class="modal-body">Este nome de técnico já existe</div>
+					<div class="modal-body">Este nome de usuário já existe</div>
 					<div class="modal-footer">
 						<a class="btn btn-danger btn-lg" href="inseretecnicoRes.php">Entendido</a>
 					</div>
@@ -30,7 +30,7 @@
 					<div class="modal-header">
 						<h4 class="modal-title">Atenção</h4>
 					</div>
-					<div class="modal-body">Cadastro de técnico realizado com sucesso!</div>
+					<div class="modal-body">Cadastro de usuário realizado com sucesso!</div>
 					<div class="modal-footer">
 						<a class="btn btn-success" href="inseretecnicoRes.php">Entendido</a>
 					</div>
@@ -43,10 +43,11 @@
 			if($link === false){
 				die("ERROR: Could not connect. " . mysqli_connect_error());
 			}
-			$nomecompletotec = $_POST['nomecomptec'];
-			$nomesistec = $_POST['nomesistec'];
-			$senhatecni = $_POST['senhatec'];
-			$sql2 = "INSERT INTO usuarios(nome,username,password,role) VALUES ('$nomecompletotec','$nomesistec','$senhatecni','tecnico')";
+			$nomecompletousr = $_POST['nomecompusr'];
+			$nomesisusr = $_POST['nomesisusr'];
+			$senhausr = $_POST['senhausr'];
+			$tipousr = $_POST['tipousr'];
+			$sql2 = "INSERT INTO usuarios(nome,username,password,role) VALUES ('$nomecompletousr','$nomesisusr','$senhausr'.'$tipousr')";
 			if(mysqli_query($link, $sql2)){
 				if ($total = mysqli_affected_rows($link)){
 					echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
@@ -56,7 +57,7 @@
 			}else{
 				echo '<script type="text/javascript"> $("#myModal").modal("show")</script>';
 			}
-			$sql = "INSERT INTO tecnicos(nome,NomeCompleto) VALUES ('$nomesistec','$nomecompletotec')";
+			/*$sql = "INSERT INTO tecnicos(nome,NomeCompleto) VALUES ('$nomesistec','$nomecompletotec')";
 			if(mysqli_query($link, $sql)){
 				if($total = mysqli_affected_rows($link)){
 					echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
@@ -65,7 +66,7 @@
 				}
 			}else{
 				echo '<script type="text/javascript"> $("#myModal").modal("show")</script>';
-			}
+			}*/
 		?>
 	</body>
 </html>
