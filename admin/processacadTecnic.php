@@ -48,7 +48,7 @@
 			$senhatecni = $_POST['senhatec'];
 			$sql2 = "INSERT INTO usuarios(nome,username,password,role) VALUES ('$nomecompletotec','$nomesistec','$senhatecni','tecnico')";
 			if(mysqli_query($link, $sql2)){
-				if ($total = mysqli_affected_rows($link)){
+				if($total = mysqli_affected_rows($link)){
 					echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
 				}else{
 					echo '<script type="text/javascript"> $("#myModal").modal("show")</script>';
