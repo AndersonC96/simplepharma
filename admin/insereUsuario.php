@@ -95,8 +95,8 @@
                 <div class="form-group">
                     <label for="tipousr"><b>Tipo</b></label>
                     <select class="form-select" id="tipousr" name="tipousr" required>
-                        <option>Administrador</option>
-                        <option>Usuário comum</option>
+                        <option>admin</option>
+                        <option>subadmin</option>
                     </select>
                 </div>
                 <br>
