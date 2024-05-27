@@ -177,7 +177,7 @@
             <select name="status" class="form-control" id="status">
               <option value="Aberto">Aberto</option>
               <option value="Em Andamento">Em Andamento</option>
-              <option value="Finalizado">Finalizado</option>
+              <option value="Feito">Finalizado</option>
             </select>
           </div>
           <div class="form-group">
