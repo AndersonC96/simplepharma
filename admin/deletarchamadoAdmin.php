@@ -20,6 +20,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="icon" type="image/png" href="../img/favicon.png"/>
@@ -37,46 +38,46 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-lg-auto">
-                        <a class="nav-item nav-link active" href="adminHome.php" aria-current="page">Home</a>
+                        <a class="nav-item nav-link active" href="adminHome.php" aria-current="page"><i class="bi bi-house-door"></i> Home</a>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chamados</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Chamados</a>
                             <ul class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                                <li><a class="dropdown-item" href="abrirchamadoAdmin.php">Abrir Chamado</a></li>
-                                <li><a class="dropdown-item" href="deletarchamadoAdmin.php">Deletar Chamado</a></li>
-                                <li><a class="dropdown-item" href="chamadosAbertos.php">Chamados em Aberto <span class="badge bg-danger"><?php echo $num; ?></span></a></li>
-                                <li><a class="dropdown-item" href="chamadosConcluidos.php">Chamados Concluídos</a></li>
-                                <li><a class="dropdown-item" href="verchamadosAdmin.php">Listar Chamado</a></li>
+                                <li><a class="dropdown-item" href="abrirchamadoAdmin.php"><i class="bi bi-plus-circle"></i> Abrir Chamado</a></li>
+                                <li><a class="dropdown-item" href="deletarchamadoAdmin.php"><i class="bi bi-trash"></i> Deletar Chamado</a></li>
+                                <li><a class="dropdown-item" href="chamadosAbertos.php"><i class="bi bi-exclamation-circle"></i> Chamados em Aberto <span class="badge bg-danger"><?php echo $num; ?></span></a></li>
+                                <li><a class="dropdown-item" href="chamadosConcluidos.php"><i class="bi bi-check-circle"></i> Chamados Concluídos</a></li>
+                                <li><a class="dropdown-item" href="verchamadosAdmin.php"><i class="bi bi-list"></i> Listar Chamado</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Técnico</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person"></i> Técnico</a>
                             <ul class="dropdown-menu" aria-labelledby="tecnicoDropdown">
-                                <li><a class="dropdown-item" href="inseretecnicoRes.php">Inserir Técnico</a></li>
-                                <li><a class="dropdown-item" href="removetecnicoRes.php">Remover Técnico</a></li>
-                                <li><a class="dropdown-item" href="verTecnicos.php">Ver Técnicos</a></li>
+                                <li><a class="dropdown-item" href="inseretecnicoRes.php"><i class="bi bi-person-plus"></i> Inserir Técnico</a></li>
+                                <li><a class="dropdown-item" href="removetecnicoRes.php"><i class="bi bi-person-x"></i> Remover Técnico</a></li>
+                                <li><a class="dropdown-item" href="verTecnicos.php"><i class="bi bi-person-lines-fill"></i> Ver Técnicos</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
-                            <ul class="dropdown-menu" aria-labelledby="tecnicoDropdown">
-                                <li><a class="dropdown-item" href="insereUsuario.php">Inserir Usuário</a></li>
-                                <li><a class="dropdown-item" href="removeUsuario.php">Remover Usuário</a></li>
-                                <li><a class="dropdown-item" href="verUsuarios.php">Ver Usuários</a></li>
+                            <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-people"></i> Usuários</a>
+                            <ul class="dropdown-menu" aria-labelledby="usuarioDropdown">
+                                <li><a class="dropdown-item" href="insereUsuario.php"><i class="bi bi-person-plus"></i> Inserir Usuário</a></li>
+                                <li><a class="dropdown-item" href="removeUsuario.php"><i class="bi bi-person-x"></i> Remover Usuário</a></li>
+                                <li><a class="dropdown-item" href="verUsuarios.php"><i class="bi bi-people"></i> Ver Usuários</a></li>
                             </ul>
                         </li>
                     </div>
                     <div class="navbar-nav ms-lg-4">
-                        <a class="nav-item nav-link" href="#"><?php echo $_SESSION['sess_usersisname']; ?></a>
+                        <a class="nav-item nav-link" href="#"><i class="bi bi-person-circle"></i> <?php echo $_SESSION['sess_usersisname']; ?></a>
                     </div>
                     <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
-                        <a href="logout.php" class="btn btn-sm btn-secondary w-full w-lg-auto">Sair</a>
+                        <a href="logout.php" class="btn btn-sm btn-secondary w-full w-lg-auto"><i class="bi bi-box-arrow-right"></i> Sair</a>
                     </div>
                 </div>
             </div>
         </nav>
         <br>
         <div class="container">
-            <h2>Preencha com o número do chamado que deseja remover</h2>
+            <h2>Por favor, insira o número do chamado que você deseja remover</h2>
             <br>
             <form method="POST" action="deleteOS.php">
                 <div class="form-group">
