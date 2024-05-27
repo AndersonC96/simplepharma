@@ -37,9 +37,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-lg-auto">
-                        <a class="nav-item nav-link active" href="adminHome.php" aria-current="page">Home</a>
+                        <a class="nav-item nav-link active" href="adminHome.php" aria-current="page"><i class="bi bi-house-door"></i> Home</a>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chamados</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Chamados</a>
                             <ul class="dropdown-menu" aria-labelledby="chamadosDropdown">
                                 <li><a class="dropdown-item" href="abrirchamadoAdmin.php">Abrir Chamado</a></li>
                                 <li><a class="dropdown-item" href="deletarchamadoAdmin.php">Deletar Chamado</a></li>
@@ -49,7 +49,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Técnico</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person"></i> Técnico</a>
                             <ul class="dropdown-menu" aria-labelledby="tecnicoDropdown">
                                 <li><a class="dropdown-item" href="inseretecnicoRes.php">Inserir Técnico</a></li>
                                 <li><a class="dropdown-item" href="removetecnicoRes.php">Remover Técnico</a></li>
@@ -57,8 +57,8 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="tecnicoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
-                            <ul class="dropdown-menu" aria-labelledby="tecnicoDropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-people"></i> Usuários</a>
+                            <ul class="dropdown-menu" aria-labelledby="usuarioDropdown">
                                 <li><a class="dropdown-item" href="insereUsuario.php">Inserir Usuário</a></li>
                                 <li><a class="dropdown-item" href="removeUsuario.php">Remover Usuário</a></li>
                                 <li><a class="dropdown-item" href="verUsuarios.php">Ver Usuários</a></li>
@@ -152,5 +152,7 @@
                 }
             });
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
