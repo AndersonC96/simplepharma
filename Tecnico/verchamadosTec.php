@@ -117,7 +117,9 @@
                             <td style="background-color:#F00;" class="text-center"> <?php echo $produto['status']; ?></td>
                             <?php }elseif($produto['status']=="Feito"){?>
                             <td style="background-color:#0F0;" class="text-center"> <?php echo $produto['status']; ?></td>
-                                <?php } ?>
+                            <?php }elseif($produto['status']=="Em Andamento"){?>
+                            <td style="background-color:ffff00;" class="text-center"> <?php echo $produto['status']; ?></td>
+                            <?php } ?>
                             <td class="text-center">
                                 <a class="btn btn-info btn-sm" href="ver1chamadoTecnico.php?chamado=<?php echo $produto['contador'];?>" data-bs-toggle="tooltip" title="Detalhes"><span class="glyphicon glyphicon-share"></span>Ver</a>
                             </td>
