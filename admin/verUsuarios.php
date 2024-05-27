@@ -149,7 +149,7 @@
                 <?php if ($num > 0){ ?>
                 <thead>
                     <tr>
-                        <th class="text-center">Nome Sistema</th>
+                        <th class="text-center">Nome de usuário</th>
                         <th class="text-center">Nome Completo</th>
                     </tr>
                 </thead>
