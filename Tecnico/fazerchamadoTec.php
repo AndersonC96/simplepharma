@@ -126,6 +126,44 @@
         </ul>
       </div>
     </div>
+    <!--<div class="container my-5">
+      <form method="POST" action="processaChamado.php" class="card">
+        <div class="card-header"><strong>Registro de Atendimento</strong></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="servicoexe"><b>Serviço Executado</b></label>
+            <textarea name="servicoexe" class="form-control" rows="5" id="servicoexe"></textarea>
+          </div>
+          <div class="row">
+            <div class='col-sm-6'>
+              <div class="form-group">
+                <input type="hidden" name="var" id="var" value="<?php print $chamado ?>" />
+                <label for="datahoraaber"><b>Data e Hora de Início do Atendimento</b></label>
+                <div class='input-group'>
+                  <input type='text' class="form-control" id="datahoraaber" name="datahoraaber" required />
+                  <span class="input-group-text">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class='col-sm-6'>
+              <div class="form-group">
+                <label for="datahorafim"><b>Data e Hora de Término do Atendimento</b></label>
+                <div class='input-group'>
+                  <input type='text' class="form-control" id="datahorafim" name="datahorafim" required />
+                  <button type="button" class="btn btn-info" onclick="setEndTime()">Definir horário</button>
+                  <span class="input-group-text">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Salvar Chamado</button>
+        </div>
+      </form>
+    </div>-->
     <div class="container my-5">
       <form method="POST" action="processaChamado.php" class="card">
         <div class="card-header"><strong>Registro de Atendimento</strong></div>
@@ -133,6 +171,18 @@
           <div class="form-group">
             <label for="servicoexe"><b>Serviço Executado</b></label>
             <textarea name="servicoexe" class="form-control" rows="5" id="servicoexe"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="status"><b>Status do Chamado</b></label>
+            <select name="status" class="form-control" id="status">
+              <option value="Aberto">Aberto</option>
+              <option value="Em Andamento">Em Andamento</option>
+              <option value="Finalizado">Finalizado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="comentarios"><b>Comentários</b></label>
+            <textarea name="comentarios" class="form-control" rows="3" id="comentarios"></textarea>
           </div>
           <div class="row">
             <div class='col-sm-6'>
