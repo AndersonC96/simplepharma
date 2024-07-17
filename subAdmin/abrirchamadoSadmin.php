@@ -1,29 +1,35 @@
 <?php
     session_start();
-    $role = $_SESSION['sess_userrole'];
-    if(!isset($_SESSION['sess_username']) || $role != "subadmin"){
-        header('Location: ../index.php?err=2');
+    $role = $_SESSION['sess_userrole'] ?? '';
+    $username = $_SESSION['sess_username'] ?? '';
+    $displayName = $_SESSION['sess_usersisname'] ?? '';
+    if(empty($username) || $role !== "subadmin"){
+        $_SESSION['message'] = ['type' => 'error', 'text' => 'Acesso negado. Por favor, faça login.'];
+        header('Location: ../index.php');
+        exit();
     }
-?>
-<?php
     include("conexaodbAdmin.php");
-    $sql_code = "select * from chamados WHERE status='Aberto'";
-    $execute = $mysqli->query($sql_code) or die($mysqli->error);
+    $sql_code = "SELECT * FROM chamados WHERE status='Aberto'";
+    $execute = $mysqli->query($sql_code);
+    if(!$execute){
+        die("Erro ao buscar chamados: " . $mysqli->error);
+    }
     $produto = $execute->fetch_assoc();
     $num = $execute->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><?php echo $_SESSION['sess_usersisname']; ?> | Abrir Chamado</title>
+        <title><?php echo htmlspecialchars($displayName); ?> | Abrir Chamado</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="../img/favicon.png"/>
+        <link rel="icon" type="image/png" href="../img/favicon.png" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <link href="../CSS/nav.css" rel="stylesheet">
         <link href="../CSS/body_chamado.css" rel="stylesheet">
     </head>
@@ -50,12 +56,12 @@
                                 <li><a class="dropdown-item" href="deletarchamadoSadmin.php"><i class="bi bi-trash"></i> Deletar Chamado</a></li>
                                 <li><a class="dropdown-item" href="chamadosAbertos.php"><i class="bi bi-exclamation-circle"></i> Chamados em Aberto <span class="badge bg-danger"><?php echo $num; ?></span></a></li>
                                 <li><a class="dropdown-item" href="chamadosConcluidos.php"><i class="bi bi-check-circle"></i> Chamados Concluídos</a></li>
-                                <li><a class="dropdown-item" href="verchamadosSadmin.php"><i class="bi bi-list"></i> Listar Chamado</a></li>
+                                <li><a class="dropdown-item" href="verchamadosSadmin.php"><i class="bi bi-list"></i> Listar Chamados</a></li>
                             </ul>
                         </li>
                     </div>
                     <div class="navbar-nav ms-lg-4">
-                        <a class="nav-item nav-link" href="#"><i class="bi bi-person"></i> <?php echo $_SESSION['sess_usersisname']; ?></a>
+                        <a class="nav-item nav-link" href="#"><i class="bi bi-person"></i> <?php echo htmlspecialchars($displayName); ?></a>
                     </div>
                     <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
                         <a href="logout.php" class="btn btn-sm btn-secondary w-full w-lg-auto"><i class="bi bi-box-arrow-right"></i> Sair</a>
@@ -63,15 +69,15 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div class="container mt-4">
             <h2>Preencha os campos</h2>
             <form method="POST" action="processainsereChamado.php">
-                <div class="form-group">
-                    <label for="username"><b>Nome do Usuário</b></label>
-                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['sess_usersisname'];?>" readonly>
+                <div class="mb-3">
+                    <label for="username" class="form-label"><b>Nome do Usuário</b></label>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($displayName); ?>" readonly>
                 </div>
-                <div class="form-group">
-                    <label for="local"><b>Selecione um local</b></label>
+                <div class="mb-3">
+                    <label for="local" class="form-label"><b>Selecione um setor</b></label>
                     <select class="form-select" id="local" name="local">
                         <option>Almoxarifado</option>
                         <option>Conferência final</option>
@@ -90,55 +96,42 @@
                         <option>Vendas</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="phone"><b>Telefone</b></label>
+                <div class="mb-3">
+                    <label for="phone" class="form-label"><b>Telefone</b></label>
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx" required>
                 </div>
-                <div class="form-group">
-                    <label for="titulo"><b>Título</b></label>
-                    <textarea name="titulo" class="form-control" rows="5" id="titulo" required></textarea>
+                <div class="mb-3">
+                    <label for="titulo" class="form-label"><b>Título</b></label>
+                    <textarea name="titulo" class="form-control" rows="3" id="titulo" required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="comment"><b>Ocorrência</b></label>
-                    <textarea name="servico" class="form-control" rows="5" id="comment" required></textarea>
+                <div class="mb-3">
+                    <label for="comment" class="form-label"><b>Ocorrência</b></label>
+                    <textarea name="servico" class="form-control" rows="3" id="comment" required></textarea>
                 </div>
-                <br>
-                <div class="form-group">
-                    <label for="id"><b>Técnico</b></label>
+                <div class="mb-3">
+                    <label for="id" class="form-label"><b>Técnico</b></label>
                     <?php
-                        ini_set('default_charset','UTF-8');
-                        $conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die ('Cannot connect to db');
-                        $result = $conn->query("select id, nome from tecnicos");
+                        ini_set('default_charset', 'UTF-8');
+                        $conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die('Cannot connect to db');
+                        $result = $conn->query("SELECT id, nome FROM tecnicos");
                         echo "<select name='id' class='form-select'>";
                         while($row = $result->fetch_assoc()){
-                            unset($id, $name);
-                            $id = $row['id'];
-                            $name = $row['nome'];
-                            echo '<option value="'.$name.'">'.$name.'</option>';
+                            echo '<option value="' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['nome']) . '</option>';
                         }
-                        echo $return .= ' </select>';
+                        echo '</select>';
                     ?>
                 </div>
-                <br>
-                <div class="form-group">
-                    <label for="datetime"><b>Data</b></label>
+                <div class="mb-3">
+                    <label for="datetime" class="form-label"><b>Data</b></label>
                     <input type="text" class="form-control" id="datetime" name="dateFrom" required readonly>
                 </div>
-                <br>
                 <button type="submit" class="btn btn-success">Inserir Chamado</button>
             </form>
         </div>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function (){
                 $('#phone').mask('(00) 00000-0000');
-            });
-        </script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function(){
-                var datetimeField = document.getElementById("datetime");
-                if(datetimeField){
-                    datetimeField.value = moment().format("DD/MM/YYYY HH:mm");
-                }
+                $('#datetime').val(moment().format('DD/MM/YYYY HH:mm'));
             });
         </script>
     </body>
