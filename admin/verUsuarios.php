@@ -1,22 +1,20 @@
 <?php
     error_reporting(0);
     include("conexao.php");
-    $itens_por_pagina = 12;
+    $itens_por_pagina = 10;
     $pagina = intval($_GET['pagina']);
     $item = $pagina * $itens_por_pagina;
     $sql_code = "SELECT * FROM usuarios ORDER BY id DESC LIMIT $item, $itens_por_pagina";
     $execute = $conn->query($sql_code) or die($conn->error);
     $produto = $execute->fetch_assoc();
     $num = $execute->num_rows;
-    $num_total = $conn->query("SELECT * FROM tecnicos")->num_rows;
+    $num_total = $conn->query("SELECT * FROM usuarios")->num_rows;
     $num_paginas = ceil($num_total / $itens_por_pagina);
-
     session_start();
     $role = $_SESSION['sess_userrole'];
     if (!isset($_SESSION['sess_username']) || $role != "admin"){
         header('Location: Home.php?err=2');
     }
-
     include("conexaodbAdmin.php");
     $sql_code2 = "SELECT * FROM chamados WHERE status='Aberto'";
     $execute2 = $mysqli->query($sql_code2) or die($mysqli->error);
@@ -154,7 +152,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php do{ ?>
+                    <?php do { ?>
                     <tr>
                         <td class="text-center"><?php echo $produto['username']; ?></td>
                         <td class="text-center"><?php echo $produto['nome']; ?></td>
@@ -169,7 +167,7 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <?php for ($i = 0; $i < $num_paginas; $i++){
+                    <?php for ($i = 0; $i < $num_paginas; $i++) {
                         $estilo = ($pagina == $i) ? "class=\"page-item active\"" : "";
                     ?>
                     <li <?php echo $estilo; ?>><a class="page-link" href="verUsuarios.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
@@ -181,6 +179,8 @@
                     </li>
                 </ul>
             </nav>
+            <?php } else { ?>
+            <p class="text-center">Nenhum usuário encontrado.</p>
             <?php } ?>
         </div>
     </body>
