@@ -82,14 +82,22 @@
             }
             .search-form{
                 margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
-            .search-form .btn-primary, .search-form .form-control, .search-form .form-select{
+            .search-form .btn-primary{
                 background-color: #008d93;
                 border-color: #008d93;
                 color: #ffffff;
             }
             .search-form .form-control::placeholder{
                 color: #6c757d;
+            }
+            .search-form .form-select{
+                background-color: #ffffff;
+                border-color: #008d93;
+                color: #000000;
             }
         </style>
     </head>
@@ -155,8 +163,8 @@
         </nav>
         <br>
         <div class="container">
-            <h2>Lista de usuários</h2>
-            <form method="GET" action="verUsuarios.php" class="search-form d-flex">
+            <h2 class="text-center">Lista de usuários</h2>
+            <form method="GET" action="verUsuarios.php" class="search-form">
                 <div class="input-group me-2">
                     <select name="ordem" class="form-select">
                         <option value="id DESC" <?php if(isset($_GET['ordem']) && $_GET['ordem'] == 'id DESC') echo 'selected'; ?>>Mais recente</option>
@@ -166,10 +174,10 @@
                     </select>
                 </div>
                 <div class="input-group flex-grow-1 me-2">
-                    <input type="text" name="busca" class="form-control" placeholder="Enter address e.g. street, city" value="<?php echo isset($_GET['busca']) ? $_GET['busca'] : ''; ?>">
+                    <input type="text" name="busca" class="form-control" placeholder="Insira o nome do usuário" value="">
                 </div>
                 <div class="input-group">
-                    <button type="submit" class="btn btn-primary">Search Results</button>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
                 </div>
             </form>
             <table class="table table-striped table-bordered">
