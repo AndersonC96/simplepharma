@@ -4,11 +4,13 @@
     $itens_por_pagina = 10;
     $pagina = intval($_GET['pagina']);
     $item = $pagina * $itens_por_pagina;
-    $sql_code = "SELECT * FROM usuarios ORDER BY id DESC LIMIT $item, $itens_por_pagina";
+    $busca = isset($_GET['busca']) ? $_GET['busca'] : '';
+    $ordem = isset($_GET['ordem']) ? $_GET['ordem'] : 'id DESC';
+    $sql_code = "SELECT * FROM usuarios WHERE username LIKE '%$busca%' ORDER BY $ordem LIMIT $item, $itens_por_pagina";
     $execute = $conn->query($sql_code) or die($conn->error);
     $produto = $execute->fetch_assoc();
     $num = $execute->num_rows;
-    $num_total = $conn->query("SELECT * FROM usuarios")->num_rows;
+    $num_total = $conn->query("SELECT * FROM usuarios WHERE username LIKE '%$busca%'")->num_rows;
     $num_paginas = ceil($num_total / $itens_por_pagina);
     session_start();
     $role = $_SESSION['sess_userrole'];
@@ -78,6 +80,17 @@
                 background-color: #007a7a;
                 border-color: #007a7a;
             }
+            .search-form{
+                margin-bottom: 20px;
+            }
+            .search-form .btn-primary, .search-form .form-control, .search-form .form-select{
+                background-color: #008d93;
+                border-color: #008d93;
+                color: #ffffff;
+            }
+            .search-form .form-control::placeholder{
+                color: #6c757d;
+            }
         </style>
     </head>
     <body>
@@ -143,6 +156,22 @@
         <br>
         <div class="container">
             <h2>Lista de usuários</h2>
+            <form method="GET" action="verUsuarios.php" class="search-form d-flex">
+                <div class="input-group me-2">
+                    <select name="ordem" class="form-select">
+                        <option value="id DESC" <?php if(isset($_GET['ordem']) && $_GET['ordem'] == 'id DESC') echo 'selected'; ?>>Mais recente</option>
+                        <option value="id ASC" <?php if(isset($_GET['ordem']) && $_GET['ordem'] == 'id ASC') echo 'selected'; ?>>Mais antigo</option>
+                        <option value="username ASC" <?php if(isset($_GET['ordem']) && $_GET['ordem'] == 'username ASC') echo 'selected'; ?>>Nome de usuário (A-Z)</option>
+                        <option value="username DESC" <?php if(isset($_GET['ordem']) && $_GET['ordem'] == 'username DESC') echo 'selected'; ?>>Nome de usuário (Z-A)</option>
+                    </select>
+                </div>
+                <div class="input-group flex-grow-1 me-2">
+                    <input type="text" name="busca" class="form-control" placeholder="Enter address e.g. street, city" value="<?php echo isset($_GET['busca']) ? $_GET['busca'] : ''; ?>">
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn btn-primary">Search Results</button>
+                </div>
+            </form>
             <table class="table table-striped table-bordered">
                 <?php if ($num > 0){ ?>
                 <thead>
@@ -152,7 +181,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php do { ?>
+                    <?php do{ ?>
                     <tr>
                         <td class="text-center"><?php echo $produto['username']; ?></td>
                         <td class="text-center"><?php echo $produto['nome']; ?></td>
@@ -163,23 +192,23 @@
             <nav>
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" href="verUsuarios.php?pagina=0" aria-label="Previous">
+                        <a class="page-link" href="verUsuarios.php?pagina=0&busca=<?php echo isset($_GET['busca']) ? $_GET['busca'] : ''; ?>&ordem=<?php echo isset($_GET['ordem']) ? $_GET['ordem'] : 'id DESC'; ?>" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <?php for ($i = 0; $i < $num_paginas; $i++) {
+                    <?php for ($i = 0; $i < $num_paginas; $i++){
                         $estilo = ($pagina == $i) ? "class=\"page-item active\"" : "";
                     ?>
-                    <li <?php echo $estilo; ?>><a class="page-link" href="verUsuarios.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
+                    <li <?php echo $estilo; ?>><a class="page-link" href="verUsuarios.php?pagina=<?php echo $i; ?>&busca=<?php echo isset($_GET['busca']) ? $_GET['busca'] : ''; ?>&ordem=<?php echo isset($_GET['ordem']) ? $_GET['ordem'] : 'id DESC'; ?>"><?php echo $i + 1; ?></a></li>
                     <?php } ?>
                     <li class="page-item">
-                        <a class="page-link" href="verUsuarios.php?pagina=<?php echo $num_paginas - 1; ?>" aria-label="Next">
+                        <a class="page-link" href="verUsuarios.php?pagina=<?php echo $num_paginas - 1; ?>&busca=<?php echo isset($_GET['busca']) ? $_GET['busca'] : ''; ?>&ordem=<?php echo isset($_GET['ordem']) ? $_GET['ordem'] : 'id DESC'; ?>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
                 </ul>
             </nav>
-            <?php } else { ?>
+            <?php } else{ ?>
             <p class="text-center">Nenhum usuário encontrado.</p>
             <?php } ?>
         </div>
