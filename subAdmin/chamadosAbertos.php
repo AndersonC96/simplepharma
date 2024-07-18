@@ -23,10 +23,67 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
         <link href="../CSS/nav.css" rel="stylesheet">
         <link href="../CSS/body_chamado.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <style>
+            .table-custom{
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 1rem;
+                background-color: #fff;
+                border-radius: 0.5rem;
+                overflow: hidden;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            }
+            .table-custom th, .table-custom td{
+                padding: 0.75rem;
+                vertical-align: middle;
+                border-top: 1px solid #dee2e6;
+            }
+            .table-custom thead th{
+                background-color: #008d93;
+                color: white;
+                text-align: center;
+                font-weight: 600;
+            }
+            .table-custom tbody tr:hover{
+                background-color: #f1f1f1;
+            }
+            .badge-status{
+                padding: 0.35em 0.65em;
+                font-size: 0.75em;
+                font-weight: 600;
+                border-radius: 0.2rem;
+                text-transform: uppercase;
+            }
+            .status-aberto{
+                background-color: #ff0707;
+                color: #fafbfc;
+            }
+            .status-feito{
+                background-color: #28a745;
+                color: #fff;
+            }
+            .page-link{
+                color: #008d93;
+            }
+            .page-link:hover{
+                color: #fff;
+                background-color: #008d93;
+                border-color: #008d93;
+            }
+            .page-item.active .page-link{
+                color: #fff;
+                background-color: #008d93;
+                border-color: #008d93;
+            }
+            .card{
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+                padding: 2rem;
+                border-radius: 1rem;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary px-0 py-3">
@@ -65,51 +122,56 @@
             </div>
         </nav>
         <div class="container mt-4">
-            <h3>Chamados em aberto no Sistema</h3>
-            <table class="table table-striped table-bordered">
-                <?php if($num > 0){ ?>
-                <thead>
-                    <tr>
-                        <th class="text-center">OS</th>
-                        <th class="text-center">Local</th>
-                        <th class="text-center">Técnico</th>
-                        <th class="text-center">Abertura</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Detalhes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php do{ ?>
-                    <tr>
-                        <td class="text-center"><?php echo $produto['contador']; ?></td>
-                        <td class="text-center"><?php echo $produto['local']; ?></td>
-                        <td class="text-center"><?php echo $produto['tecnico']; ?></td>
-                        <td class="text-center"><?php echo $produto['datahora']; ?></td>
-                        <td class="text-center" style="background-color: <?php echo $produto['status'] == 'Aberto' ? '#F00' : '#0F0'; ?>;">
-                            <?php echo $produto['status']; ?>
-                        </td>
-                        <td class="text-center">
-                            <a class="btn btn-info btn-sm" href="ver1chamadoAdmin.php?chamado=<?php echo $produto['contador']; ?>" data-toggle="tooltip" title="Detalhes">
-                                <i class="bi bi-eye"></i> Ver
-                            </a>
+            <h3 class="text-center">Chamados em Aberto</h3>
+            <div class="table-responsive">
+                <table class="table table-custom">
+                    <?php if ($num > 0){ ?>
+                    <thead>
+                        <tr>
+                            <th class="text-center">OS</th>
+                            <th class="text-center">Local</th>
+                            <th class="text-center">Técnico</th>
+                            <th class="text-center">Abertura</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php do{ ?>
+                        <tr>
+                            <td class="text-center"><?php echo $produto['contador']; ?></td>
+                            <td class="text-center"><?php echo $produto['local']; ?></td>
+                            <td class="text-center"><?php echo $produto['tecnico']; ?></td>
+                            <td class="text-center"><?php echo $produto['datahora']; ?></td>
+                            <td class="text-center">
+                                <span class="badge badge-status <?php echo 'status-' . strtolower(str_replace(' ', '-', $produto['status'])); ?>">
+                                    <?php echo $produto['status']; ?>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                            <a class="btn btn-info btn-sm" href="ver1chamadoAdmin.php?chamado=<?php echo $produto['contador']; ?>" data-toggle="tooltip" title="Detalhes"><i class="bi bi-eye"></i> Ver</a>
                         </td>
                     </tr>
                     <?php } while ($produto = $execute->fetch_assoc()); ?>
                 </tbody>
             </table>
             <nav>
-                <ul class="pagination">
-                    <li class="page-item <?php echo $pagina == 0 ? 'disabled' : ''; ?>">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
                         <a class="page-link" href="chamadosAbertos.php?pagina=0" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <?php for($i = 0; $i < $num_paginas; $i++): ?>
-                    <li class="page-item <?php echo $pagina == $i ? 'active' : ''; ?>">
-                        <a class="page-link" href="chamadosAbertos.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a>
-                    </li>
-                    <?php endfor; ?>
-                    <li class="page-item <?php echo $pagina == $num_paginas - 1 ? 'disabled' : ''; ?>">
+                    <?php
+                        for ($i = 0; $i < $num_paginas; $i++){
+                            $estilo = "";
+                            if ($pagina == $i){
+                                $estilo = "class=\"active\"";
+                            }
+                    ?>
+                    <li class="page-item" <?php echo $estilo; ?>><a class="page-link" href="chamadosAbertos.php?pagina=<?php echo $i; ?>"><?php echo $i + 1; ?></a></li>
+                    <?php } ?>
+                    <li class="page-item">
                         <a class="page-link" href="chamadosAbertos.php?pagina=<?php echo $num_paginas - 1; ?>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
@@ -118,10 +180,16 @@
             </nav>
             <?php } ?>
         </div>
-        <script>
-            $(document).ready(function(){
-                $('[data-toggle="tooltip"]').tooltip();
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function (){
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl){
+                return new bootstrap.Tooltip(tooltipTriggerEl);
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
 </html>
