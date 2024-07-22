@@ -161,7 +161,7 @@
                                 </span>
                             </td>
                             <td class="text-center">
-                                <a class="btn btn-info btn-sm" href="ver1chamadoAdmin.php?chamado=<?php echo $produto['contador']; ?>" data-bs-toggle="tooltip" title="Detalhes"><i class="bi bi-eye"></i> Ver</a>
+                                <a class="btn btn-info btn-sm" href="ver1chamadoTecnico.php?chamado=<?php echo $produto['contador']; ?>" data-bs-toggle="tooltip" title="Detalhes"><i class="bi bi-eye"></i> Ver</a>
                             </td>
                         </tr>
                         <?php } while ($produto = $execute->fetch_assoc()); ?>
