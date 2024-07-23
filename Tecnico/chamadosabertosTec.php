@@ -13,11 +13,11 @@
     $pagina = isset($_GET['pagina']) ? intval($_GET['pagina']) : 0;
     $tecnico = $_SESSION['sess_username'];
     $item = $pagina * $itens_por_pagina;
-    $sql_code = "SELECT contador, local, tecnico, datahora, status, servico FROM chamados WHERE status='Aberto' AND tecnico='$tecnico' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
+    $sql_code = "SELECT contador, local, tecnico, datahora, status, servico FROM chamados WHERE status IN ('Aberto','Em Andamento') AND tecnico='$tecnico' ORDER BY contador DESC LIMIT $item, $itens_por_pagina";
     $execute = $conn->query($sql_code) or die($conn->error);
     $produto = $execute->fetch_assoc();
     $num = $execute->num_rows;
-    $num_total = $conn->query("SELECT contador, local, tecnico, datahora, status, servico FROM chamados WHERE status='Aberto' AND tecnico='$tecnico'")->num_rows;
+    $num_total = $conn->query("SELECT contador, local, tecnico, datahora, status, servico FROM chamados WHERE status IN ('Aberto','Em Andamento') AND tecnico='$tecnico'")->num_rows;
     $num_paginas = ceil($num_total / $itens_por_pagina);
 ?>
 <!DOCTYPE html>
@@ -68,6 +68,10 @@
             }
             .status-feito{
                 background-color: #28a745;
+                color: #fff;
+            }
+            .status-em-andamento{
+                background-color: #ffc107;
                 color: #fff;
             }
             .page-link{
