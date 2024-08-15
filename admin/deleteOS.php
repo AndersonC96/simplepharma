@@ -12,49 +12,52 @@
   </head>
   <body>
     <div class="modal fade" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Atenção</h4>
-          </div>
-          <div class="modal-body">Ordem de serviço inválida</div>
-          <div class="modal-footer">
-            <a class="btn btn-danger btn-lg" href="deletarchamadoAdmin.php">Entendido</a>
-          </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Atenção</h4>
+                </div>
+                <div class="modal-body">Ordem de serviço inválida</div>
+                <div class="modal-footer">
+                    <a class="btn btn-danger btn-lg" href="deletarchamadoAdmin.php">Entendido</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <div class="modal fade" id="myModal2">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Atenção</h4>
-          </div>
-          <div class="modal-body">Ordem de serviço removida com sucesso !</div>
-          <div class="modal-footer">
-            <a class="btn btn-sucess btn-lg" href="deletarchamadoAdmin.php">Entendido</a>
-          </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Atenção</h4>
+                </div>
+                <div class="modal-body">Ordem de serviço removida com sucesso!</div>
+                <div class="modal-footer">
+                    <a class="btn btn-success btn-lg" href="deletarchamadoAdmin.php">Entendido</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <?php
-      $link = mysqli_connect("localhost", "root", "", "simplepharma");
-      //$link = mysqli_connect($hostname_conexao, $username_conexao, $password_conexao, $database_conexao);
-      $numero_os = $_POST['oser'];
-      if($link === false){
-        die("ERROR: Could not connect. " . mysqli_connect_error());
+      include("conexaodbAdmin.php");
+      $numero_os = filter_input(INPUT_POST, 'oser', FILTER_VALIDATE_INT);
+      if(!$numero_os){
+          echo '<script type="text/javascript"> $("#myModal").modal("show")</script>';
+          exit();
       }
-      $sql = "DELETE FROM chamados WHERE contador='$numero_os'";
-      if(mysqli_query($link, $sql)){
-        if($total = mysqli_affected_rows($link)){
+      $stmt = $mysqli->prepare("DELETE FROM chamados WHERE contador = ?");
+      $stmt->bind_param("i", $numero_os);
+      if($stmt->execute()){
+        if($stmt->affected_rows > 0){
           echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
         }else{
           echo '<script type="text/javascript"> $("#myModal").modal("show")</script>';
         }
       }else{
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        error_log("Error: " . $stmt->error);
+        echo "Erro ao executar a consulta.";
       }
-      mysqli_close($link);
+      $stmt->close();
+      $mysqli->close();
     ?>
   </body>
 </html>
