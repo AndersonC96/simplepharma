@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = 'Aberto'; // Definindo o status como "Aberto"
 
     // Inserir os dados no banco de dados usando prepared statement
-    $stmt = $mysqli->prepare("INSERT INTO chamados (user_id, usuario, local, telefone, anydesk, titulo, servico, tecnico, datahoraaber, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO chamados (user_id, usuario, local, telefone, anydesk, titulo, servico, tecnico, datahora, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param('isssssssss', $user_id, $username, $local, $phone, $anydesk, $titulo, $servico, $tecnico_id, $dateFrom, $status);
 
     if ($stmt->execute()) {
