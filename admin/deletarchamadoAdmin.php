@@ -1,10 +1,7 @@
 <?php
     error_reporting(0);
+    include('session_check.php');
     session_start();
-    if(!isset($_SESSION['sess_username']) || $_SESSION['sess_userrole'] != "admin"){
-        header('Location: ../index.php?err=2');
-        exit();
-    }
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -16,6 +13,7 @@
     }
     $stmt->execute();
     $execute = $stmt->get_result();
+    $num = $execute->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,12 +122,10 @@
                 <?php while ($produto = $execute->fetch_assoc()): ?>
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-header">
-                                Chamado #<?php echo htmlspecialchars($produto['contador']); ?>
-                            </div>
+                            <div class="card-header">Chamado #<?php echo htmlspecialchars($produto['contador']); ?></div>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($produto['titulo']); ?></h5>
-                                <p class="card-text"><b>Descrição</b>: <?php echo htmlspecialchars($produto['servico']); ?></p>
+                                <p class="card-text"><b>Descrição</b>: <?php echo htmlspecialchars(strip_tags($produto['servico'])); ?></p>
                             </div>
                             <div class="card-footer">
                                 <?php
