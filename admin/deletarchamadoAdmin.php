@@ -39,6 +39,7 @@
             h2{
                 font-weight: 500;
                 color: #343a40;
+                margin-bottom: 20px;
             }
             .form-group input{
                 border-radius: 0.375rem;
@@ -46,11 +47,16 @@
                 border: 2px solid #50acb2;
                 font-size: 1rem;
                 height: calc(2.25rem + 2px);
+                max-width: 400px;
+                margin: 0 auto;
             }
             .btn-danger{
                 background-color: #dc3545;
                 border-color: #dc3545;
                 transition: background-color 0.3s ease;
+                width: 100%;
+                max-width: 200px;
+                margin: 10px auto;
             }
             .btn-danger:hover{
                 background-color: #c82333;
@@ -105,18 +111,15 @@
     <body>
         <?php include('navbarAdmin.php'); ?>
         <br>
-        <div class="container">
+        <div class="container text-center">
             <h2>Por favor, insira o número do chamado que você deseja remover</h2>
-            <br>
             <form method="POST" action="deleteOS.php">
-                <div class="form-group position-relative">
+                <div class="form-group">
                     <input type="number" class="form-control" id="oser" placeholder="Número do Chamado" name="oser" required />
                 </div>
-                <br>
-                <button type="submit" class="btn btn-danger btn-block">Remover Chamado</button>
+                <button type="submit" class="btn btn-danger">Remover Chamado</button>
             </form>
             <br>
-            <h2>Chamados em Aberto</h2>
             <div class="row">
                 <?php while ($produto = $execute->fetch_assoc()): ?>
                     <div class="col-md-4">
