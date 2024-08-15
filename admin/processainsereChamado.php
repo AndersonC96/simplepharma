@@ -1,53 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Inserir Chamado</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="icon" type="image/png" href="../img/favicon.png"/>
-  </head>
-  <body>
-    <div class="modal fade" id="myModal2">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Atenção</h4>
-          </div>
-          <div class="modal-body">Chamado Aberto com sucesso!</div>
-          <div class="modal-body">Tempo médio para atendimento: 30 Minutos</div>
-          <div class="modal-footer">
-            <a class="btn btn-success" href="adminHome.php">Entendido</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <?php
-      session_start();
-      $role = $_SESSION['sess_userrole'];
-      if(!isset($_SESSION['sess_username']) || $role!="admin"){
-        header('Location: ../index.php?err=2');
-      }
-    ?>
-    <?php
-      include_once("conexao.php");
-      $usuario = $_POST['username'];
-      $local = $_POST['local'];
-      $titulo = $_POST['titulo'];
-      $servico = $_POST['servico'];
-      $tecnico = $_POST['id'];
-      //$tecnico = "";
-      $data_atendimento = $_POST['dateFrom'];
-      $telefone = $_POST['phone'];
-      $status = "Aberto";
-      $result_usuario = "INSERT INTO chamados(usuario,local,titulo,datahora,tecnico,status,servico,telefone) VALUES ('$usuario','$local','$titulo','$data_atendimento','$tecnico','$status','$servico','$telefone')";
-      $resultado_usuario = mysqli_query($conn, $result_usuario);
-      if(mysqli_affected_rows($conn) != 0){
-        echo '<script type="text/javascript"> $("#myModal2").modal("show")</script>';
-      }else{
-        echo "ERRO";
-      }
-    ?>
+<?php
+session_start();
+
+if (!isset($_SESSION['sess_username'])) {
+    header('Location: login.php');
+    exit();
+}
+
+include('conexaodbAdmin.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_SESSION['sess_username'];
+
+    // Recuperar o `id` com base no `username`
+    $stmt_user = $mysqli->prepare("SELECT id FROM usuarios WHERE username = ?");
+    $stmt_user->bind_param('s', $username);
+    $stmt_user->execute();
+    $stmt_user->bind_result($user_id);
+    $stmt_user->fetch();
+    $stmt_user->close();
+
+    if (!$user_id) {
+        header('Location: login.php?err=invalid_user');
+        exit();
+    }
+
+    $local = htmlspecialchars($_POST['local']);
+    $phone = htmlspecialchars($_POST['phone']);
+    $anydesk = htmlspecialchars($_POST['anydesk']);
+    $titulo = htmlspecialchars($_POST['titulo']);
+    $servico = $_POST['servico'];
+    $tecnico_id = htmlspecialchars($_POST['id']);
+    $dateFrom = htmlspecialchars($_POST['dateFrom']);
+    $status = 'Aberto'; // Definindo o status como "Aberto"
+
+    // Inserir os dados no banco de dados usando prepared statement
+    $stmt = $mysqli->prepare("INSERT INTO chamados (user_id, usuario, local, telefone, anydesk, titulo, servico, tecnico, datahoraaber, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param('isssssssss', $user_id, $username, $local, $phone, $anydesk, $titulo, $servico, $tecnico_id, $dateFrom, $status);
+
+    if ($stmt->execute()) {
+        $chamado_id = $stmt->insert_id;
+
+        // Verifica e manipula os arquivos anexados
+        if (!empty($_FILES['anexos']['name'][0])) {
+            $upload_dir = '../uploads/' . $user_id . '/';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+
+            foreach ($_FILES['anexos']['name'] as $key => $filename) {
+                $unique_filename = time() . '_' . basename($filename);
+                $filepath = $upload_dir . $unique_filename;
+
+                if (move_uploaded_file($_FILES['anexos']['tmp_name'][$key], $filepath)) {
+                    $stmt_anexo = $mysqli->prepare("INSERT INTO anexos_chamados (chamado_id, user_id, filepath) VALUES (?, ?, ?)");
+                    $stmt_anexo->bind_param('iis', $chamado_id, $user_id, $filepath);
+                    $stmt_anexo->execute();
+                }
+            }
+        }
+
+        header('Location: chamadosAbertos.php?msg=success');
+        exit();
+    } else {
+        header('Location: abrirchamadoAdmin.php?err=insert_failed');
+        exit();
+    }
+}
+?>
