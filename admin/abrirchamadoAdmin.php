@@ -88,7 +88,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="anydesk"><b>Anydesk</b></label>
-                    <input type="text" class="form-control" id="anydesk" name="anydesk" placeholder="Digite o ID do Anydesk">
+                    <input type="text" class="form-control" id="anydesk" name="anydesk" placeholder="Digite o ID do Anydesk (se necessário)">
                 </div>
                 <div class="form-group mb-3">
                     <label for="titulo"><b>Título</b></label>
