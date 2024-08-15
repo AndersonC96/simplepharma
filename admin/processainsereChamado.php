@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_user->close();
 
     if (!$user_id) {
-        header('Location: login.php?err=invalid_user');
+        echo "<script>alert('Usuário inválido.'); window.location.href = 'login.php';</script>";
         exit();
     }
 
@@ -33,9 +33,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateFrom = htmlspecialchars($_POST['dateFrom']);
     $status = 'Aberto'; // Definindo o status como "Aberto"
 
+    // Buscar o nome do técnico com base no ID
+    $stmt_tecnico = $mysqli->prepare("SELECT nome FROM tecnicos WHERE id = ?");
+    $stmt_tecnico->bind_param('i', $tecnico_id);
+    $stmt_tecnico->execute();
+    $stmt_tecnico->bind_result($tecnico_nome);
+    $stmt_tecnico->fetch();
+    $stmt_tecnico->close();
+
     // Inserir os dados no banco de dados usando prepared statement
     $stmt = $mysqli->prepare("INSERT INTO chamados (user_id, usuario, local, telefone, anydesk, titulo, servico, tecnico, datahora, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param('isssssssss', $user_id, $username, $local, $phone, $anydesk, $titulo, $servico, $tecnico_id, $dateFrom, $status);
+    $stmt->bind_param('isssssssss', $user_id, $username, $local, $phone, $anydesk, $titulo, $servico, $tecnico_nome, $dateFrom, $status);
 
     if ($stmt->execute()) {
         $chamado_id = $stmt->insert_id;
@@ -59,11 +67,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        header('Location: chamadosAbertos.php?msg=success');
-        exit();
+        echo "<script>
+            alert('Chamado aberto com sucesso!');
+            window.location.href = 'chamadosAbertos.php';
+        </script>";
     } else {
-        header('Location: abrirchamadoAdmin.php?err=insert_failed');
-        exit();
+        $error = $stmt->error;
+        echo "<script>
+            alert('Erro ao abrir o chamado: " . addslashes($error) . "');
+            window.location.href = 'abrirchamadoAdmin.php';
+        </script>";
     }
 }
 ?>
