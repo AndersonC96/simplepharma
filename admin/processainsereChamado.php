@@ -1,65 +1,67 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['sess_username'])){
-        header('Location: login.php');
-        exit();
-    }
-    include('conexaodbAdmin.php');
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $username = $_SESSION['sess_username'];
-        $stmt_user = $mysqli->prepare("SELECT id FROM usuarios WHERE username = ?");
-        $stmt_user->bind_param('s', $username);
-        $stmt_user->execute();
-        $stmt_user->bind_result($user_id);
-        $stmt_user->fetch();
-        $stmt_user->close();
-        if(!$user_id){
-            echo "<script>alert('Usuário inválido.'); window.location.href = 'login.php';</script>";
-            exit();
-        }
-        $local = htmlspecialchars($_POST['local']);
-        $phone = htmlspecialchars($_POST['phone']);
-        $anydesk = htmlspecialchars($_POST['anydesk']);
-        $titulo = htmlspecialchars($_POST['titulo']);
-        $servico = $_POST['servico'];
-        $tecnico_id = htmlspecialchars($_POST['id']);
-        $dateFrom = htmlspecialchars($_POST['dateFrom']);
-        $status = 'Aberto';
-        $stmt_tecnico = $mysqli->prepare("SELECT nome FROM tecnicos WHERE id = ?");
-        $stmt_tecnico->bind_param('i', $tecnico_id);
-        $stmt_tecnico->execute();
-        $stmt_tecnico->bind_result($tecnico_nome);
-        $stmt_tecnico->fetch();
-        $stmt_tecnico->close();
-        $stmt = $mysqli->prepare("INSERT INTO chamados (user_id, usuario, local, telefone, anydesk, titulo, servico, tecnico, datahora, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param('isssssssss', $user_id, $username, $local, $phone, $anydesk, $titulo, $servico, $tecnico_nome, $dateFrom, $status);
-        if($stmt->execute()){
-            $chamado_id = $stmt->insert_id;
-            if(!empty($_FILES['anexos']['name'][0])){
-                $upload_dir = '../uploads/' . $user_id . '/';
-                if(!is_dir($upload_dir)){
-                    mkdir($upload_dir, 0755, true);
-                }
-                foreach($_FILES['anexos']['name'] as $key => $filename){
-                    $unique_filename = time() . '_' . basename($filename);
-                    $filepath = $upload_dir . $unique_filename;
-                    if(move_uploaded_file($_FILES['anexos']['tmp_name'][$key], $filepath)){
-                        $stmt_anexo = $mysqli->prepare("INSERT INTO anexos_chamados (chamado_id, user_id, filepath) VALUES (?, ?, ?)");
-                        $stmt_anexo->bind_param('iis', $chamado_id, $user_id, $filepath);
-                        $stmt_anexo->execute();
-                    }
-                }
-            }
-            echo "<script>
-                alert('Chamado aberto com sucesso!');
-                window.location.href = 'chamadosAbertos.php';
-            </script>";
-        }else{
-            $error = $stmt->error;
-            echo "<script>
-                alert('Erro ao abrir o chamado: " . addslashes($error) . "');
-                window.location.href = 'abrirchamadoAdmin.php';
-            </script>";
+
+require_once __DIR__ . '/../config/bootstrap.php';
+
+use App\Auth;
+use App\Csrf;
+use App\Uploader;
+
+// Security check
+Auth::requireRole('admin', '../index.php');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: abrirchamadoAdmin.php');
+    exit();
+}
+
+// CSRF Validation
+if (!isset($_POST['csrf_token']) || !Csrf::validateToken($_POST['csrf_token'])) {
+    die("Sessão inválida ou expirada.");
+}
+
+$db = get_db_connection();
+
+// Inputs
+$user_id = $_SESSION['user_id'];
+$location = $_POST['location'] ?? 'Outro';
+$phone = $_POST['phone'] ?? '';
+$remote_tool_id = $_POST['remote_tool_id'] ?? '';
+$title = $_POST['title'] ?? 'Sem Título';
+$description = $_POST['description'] ?? '';
+$technician_id = !empty($_POST['technician_id']) ? (int)$_POST['technician_id'] : null;
+$status = 'Aberto';
+
+try {
+    $db->beginTransaction();
+
+    // Insert Ticket
+    $stmt = $db->prepare("INSERT INTO tickets (user_id, title, location, phone, remote_tool_id, description, technician_id, status, opened_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt->execute([
+        $user_id, $title, $location, $phone, $remote_tool_id, $description, $technician_id, $status
+    ]);
+    
+    $ticket_id = $db->lastInsertId();
+
+    // Handle Uploads
+    if (!empty($_FILES['attachments']['name'][0])) {
+        $uploads = Uploader::upload($_FILES['attachments'], $user_id);
+        
+        foreach ($uploads as $file) {
+            $stmt_file = $db->prepare("INSERT INTO ticket_attachments (ticket_id, user_id, filename, file_path, file_type) VALUES (?, ?, ?, ?, ?)");
+            $stmt_file->execute([
+                $ticket_id, $user_id, $file['original_name'], $file['stored_path'], $file['mime_type']
+            ]);
         }
     }
-?>
+
+    $db->commit();
+    $_SESSION['message'] = ['type' => 'success', 'text' => 'Chamado aberto com sucesso! ID: #' . $ticket_id];
+    header('Location: chamadosAbertos.php');
+
+} catch (Exception $e) {
+    if ($db->inTransaction()) $db->rollBack();
+    error_log("Error opening ticket: " . $e->getMessage());
+    $_SESSION['message'] = ['type' => 'danger', 'text' => 'Erro ao abrir o chamado. Por favor, tente novamente.'];
+    header('Location: abrirchamadoAdmin.php');
+}
+exit();

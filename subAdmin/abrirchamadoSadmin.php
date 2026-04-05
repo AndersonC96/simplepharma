@@ -1,138 +1,102 @@
 <?php
-    session_start();
-    $role = $_SESSION['sess_userrole'] ?? '';
-    $username = $_SESSION['sess_username'] ?? '';
-    $displayName = $_SESSION['sess_usersisname'] ?? '';
-    if(empty($username) || $role !== "subadmin"){
-        $_SESSION['message'] = ['type' => 'error', 'text' => 'Acesso negado. Por favor, faça login.'];
-        header('Location: ../index.php');
-        exit();
-    }
-    include("conexaodbAdmin.php");
-    $sql_code = "SELECT * FROM chamados WHERE status='Aberto'";
-    $execute = $mysqli->query($sql_code);
-    if(!$execute){
-        die("Erro ao buscar chamados: " . $mysqli->error);
-    }
-    $produto = $execute->fetch_assoc();
-    $num = $execute->num_rows;
+
+require_once __DIR__ . '/../config/bootstrap.php';
+
+use App\Auth;
+use App\Layout;
+use App\Csrf;
+
+// Security check
+Auth::requireRole('subadmin', '../index.php');
+
+$db = get_db_connection();
+$user_id = $_SESSION['user_id'];
+
+// Count open tickets for navbar
+$stmt_count = $db->prepare("SELECT COUNT(*) FROM tickets WHERE user_id = ? AND status IN ('Aberto', 'Em Atendimento')");
+$stmt_count->execute([$user_id]);
+$num_open = $stmt_count->fetchColumn();
+
+Layout::header('Abrir Chamado', 'chamados', $num_open);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title><?php echo htmlspecialchars($displayName); ?> | Abrir Chamado</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="../img/favicon.png" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <link href="../CSS/nav.css" rel="stylesheet">
-        <link href="../CSS/body_chamado.css" rel="stylesheet">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary px-0 py-3">
-            <div class="container-xl">
-                <a class="navbar-brand" href="#">
-                    <img src="https://static.wixstatic.com/media/fef91e_c3f644e14da442178f706149ae38d838~mv2.png/v1/crop/x_0,y_24,w_436,h_262/fill/w_120,h_71,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/CAPA-03.png" class="h-12" alt="...">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-lg-auto">
-                        <a class="nav-item nav-link active" href="subadminHome.php" aria-current="page">
-                            <i class="bi bi-house-door"></i> Home
-                        </a>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="chamadosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-envelope"></i> Chamados
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="chamadosDropdown">
-                                <li><a class="dropdown-item" href="abrirchamadoSadmin.php"><i class="bi bi-plus-circle"></i> Abrir Chamado</a></li>
-                                <li><a class="dropdown-item" href="deletarchamadoSadmin.php"><i class="bi bi-trash"></i> Deletar Chamado</a></li>
-                                <li><a class="dropdown-item" href="chamadosAbertos.php"><i class="bi bi-exclamation-circle"></i> Chamados em Aberto <span class="badge bg-danger"><?php echo $num; ?></span></a></li>
-                                <li><a class="dropdown-item" href="chamadosConcluidos.php"><i class="bi bi-check-circle"></i> Chamados Concluídos</a></li>
-                                <li><a class="dropdown-item" href="verchamadosSadmin.php"><i class="bi bi-list"></i> Listar Chamados</a></li>
-                            </ul>
-                        </li>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="h4 mb-4">Novo Chamado</h2>
+                <form action="processainsereChamado.php" method="POST" enctype="multipart/form-data">
+                    <?php Csrf::field(); ?>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Seu Setor / Local</label>
+                            <select class="form-select" name="location" required>
+                                <option value="" disabled selected>Selecione...</option>
+                                <option>Almoxarifado</option>
+                                <option>Expedição</option>
+                                <option>Financeiro</option>
+                                <option>RH</option>
+                                <option>Recepção</option>
+                                <option>TI</option>
+                                <option>Vendas</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Telefone de Contato</label>
+                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="(00) 00000-0000" required>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <label class="form-label fw-bold">ID Anydesk (se necessário)</label>
+                            <input type="text" class="form-control" name="remote_tool_id" placeholder="Digite o ID para acesso remoto">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Título Resumido</label>
+                            <input type="text" class="form-control" name="title" placeholder="Ex: Problema com impressora" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Descrição da Ocorrência</label>
+                            <textarea name="description" id="description" class="form-control" rows="5" required></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Anexos</label>
+                            <input type="file" class="form-control" name="attachments[]" multiple>
+                            <small class="text-muted">Formatos permitidos: JPG, PNG, PDF, DOCX.</small>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-success w-100 py-2">Enviar Chamado</button>
+                        </div>
                     </div>
-                    <div class="navbar-nav ms-lg-4">
-                        <a class="nav-item nav-link" href="#"><i class="bi bi-person"></i> <?php echo htmlspecialchars($displayName); ?></a>
-                    </div>
-                    <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
-                        <a href="logout.php" class="btn btn-sm btn-secondary w-full w-lg-auto"><i class="bi bi-box-arrow-right"></i> Sair</a>
-                    </div>
-                </div>
+                </form>
             </div>
-        </nav>
-        <div class="container mt-4">
-            <h2>Preencha os campos</h2>
-            <form method="POST" action="processainsereChamado.php">
-                <div class="mb-3">
-                    <label for="username" class="form-label"><b>Nome do Usuário</b></label>
-                    <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($displayName); ?>" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="local" class="form-label"><b>Selecione um setor</b></label>
-                    <select class="form-select" id="local" name="local">
-                        <option>Almoxarifado</option>
-                        <option>Conferência final</option>
-                        <option>Conferência inicial</option>
-                        <option>Desvincular</option>
-                        <option>Expedição</option>
-                        <option>Financeiro</option>
-                        <option>Inclusão</option>
-                        <option>Laboratório</option>
-                        <option>Orçamento</option>
-                        <option>RH</option>
-                        <option>Recepção</option>
-                        <option>SAC</option>
-                        <option>TI</option>
-                        <option>Uso contínuo</option>
-                        <option>Vendas</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="phone" class="form-label"><b>Telefone</b></label>
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx" required>
-                </div>
-                <div class="mb-3">
-                    <label for="titulo" class="form-label"><b>Título</b></label>
-                    <textarea name="titulo" class="form-control" rows="3" id="titulo" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="comment" class="form-label"><b>Ocorrência</b></label>
-                    <textarea name="servico" class="form-control" rows="3" id="comment" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="id" class="form-label"><b>Técnico</b></label>
-                    <?php
-                        ini_set('default_charset', 'UTF-8');
-                        $conn = new mysqli($hostname_conexao, $username_conexao, $password_conexao, $database_conexao) or die('Cannot connect to db');
-                        $result = $conn->query("SELECT id, nome FROM tecnicos");
-                        echo "<select name='id' class='form-select'>";
-                        while($row = $result->fetch_assoc()){
-                            echo '<option value="' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['nome']) . '</option>';
-                        }
-                        echo '</select>';
-                    ?>
-                </div>
-                <div class="mb-3">
-                    <label for="datetime" class="form-label"><b>Data</b></label>
-                    <input type="text" class="form-control" id="datetime" name="dateFrom" required readonly>
-                </div>
-                <button type="submit" class="btn btn-success">Inserir Chamado</button>
-            </form>
         </div>
-        <script>
-            $(document).ready(function (){
-                $('#phone').mask('(00) 00000-0000');
-                $('#datetime').val(moment().format('DD/MM/YYYY HH:mm'));
-            });
-        </script>
-    </body>
-</html>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#phone').mask('(00) 00000-0000');
+        $('#description').summernote({
+            height: 150,
+            placeholder: 'Descreva detalhadamente o problema ou solicitação...',
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['link', 'picture']]
+            ]
+        });
+    });
+</script>
+
+<?php Layout::footer(); ?>
