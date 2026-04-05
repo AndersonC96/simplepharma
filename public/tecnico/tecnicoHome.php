@@ -38,20 +38,20 @@ Layout::header('Área do Técnico', 'home', $num_tickets);
 <div class="row g-4">
     <div class="col-md-6">
         <div class="card border-0 shadow-sm h-100">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title text-warning"><i class="fas fa-tools"></i> Seus Chamados Ativos</h5>
                 <h2 class="display-4 fw-bold"><?php echo $num_tickets; ?></h2>
                 <p class="text-muted">Chamados aguardando sua ação.</p>
-                <a href="chamadosabertosTec.php" class="btn btn-warning btn-sm">Ver Meus Chamados</a>
+                <a href="chamadosabertosTec.php" class="btn btn-warning btn-sm mt-auto">Ver Meus Chamados</a>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card border-0 shadow-sm h-100">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title text-success"><i class="fas fa-history"></i> Histórico</h5>
                 <p class="card-text">Visualize chamados que você já concluiu.</p>
-                <a href="chamadosconcluidosTec.php" class="btn btn-outline-success btn-sm mt-4">Ver Concluídos</a>
+                <a href="chamadosconcluidosTec.php" class="btn btn-outline-success btn-sm mt-auto">Ver Concluídos</a>
             </div>
         </div>
     </div>

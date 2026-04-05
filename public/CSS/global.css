@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary: #6366f1; /* Indigo-500 */
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-300: #cbd5e1;
+    --slate-400: #94a3b8;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
+    
+    --sidebar-width: 260px;
+    --header-height: 70px;
+    --border-radius-lg: 16px;
+    --border-radius-md: 12px;
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--slate-50);
+    color: var(--slate-900);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* --- Sidebar V2 (Modern SaaS) --- */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--slate-900);
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 2rem 1.5rem;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+    text-decoration: none;
+}
+
+.sidebar i.brand-icon {
+    background: var(--primary);
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.sidebar .nav-group {
+    margin-bottom: 2rem;
+}
+
+.sidebar .nav-label {
+    color: var(--slate-400);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.sidebar .nav-link-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--slate-300);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.sidebar .nav-link-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.sidebar .nav-link-item.active {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* --- Main Layout Shell --- */
+.main-shell {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-header {
+    height: var(--header-height);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--slate-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.content-area {
+    padding: 2.5rem;
+    animation: fadeIn 0.4s ease-out;
+    flex: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Better SaaS Components --- */
+.glass-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+}
+
+.btn-premium {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-premium:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* --- Stunning Login (V2) --- */
+.login-mesh {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f172a;
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+    position: relative;
+    padding: 2rem;
+}
+
+.login-glass-card {
+    max-width: 440px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 3rem;
+    color: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Status Pills --- */
+.status-pill {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-pill-open { background: #fee2e2; color: #991b1b; }
+.status-pill-progress { background: #fef3c7; color: #92400e; }
+.status-pill-concluido { background: #dcfce7; color: #166534; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); }
+    .main-shell { margin-left: 0; }
+    .top-header { padding: 0 1rem; }
+}

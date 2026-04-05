@@ -31,20 +31,20 @@ Layout::header('Painel do Usuário', 'home', $num_tickets);
 <div class="row g-4">
     <div class="col-md-6">
         <div class="card border-0 shadow-sm h-100">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title text-primary"><i class="fas fa-ticket-alt"></i> Meus Chamados Abertos</h5>
                 <h2 class="display-4 fw-bold"><?php echo $num_tickets; ?></h2>
-                <a href="chamadosAbertos.php" class="btn btn-primary btn-sm">Ver Meus Chamados</a>
+                <a href="chamadosAbertos.php" class="btn btn-primary btn-sm mt-auto">Ver Meus Chamados</a>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card border-0 shadow-sm h-100">
-            <div class="card-body text-center p-4">
+            <div class="card-body d-flex flex-column text-center p-4">
                 <i class="fas fa-plus-circle fa-3x text-success mb-3"></i>
                 <h5>Precisa de ajuda?</h5>
                 <p class="text-muted">Abra um novo chamado para suporte técnico.</p>
-                <a href="abrirchamadoSadmin.php" class="btn btn-success">Abrir Novo Chamado</a>
+                <a href="abrirchamadoSadmin.php" class="btn btn-success mt-auto">Abrir Novo Chamado</a>
             </div>
         </div>
     </div>
