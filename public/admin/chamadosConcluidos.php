@@ -74,7 +74,9 @@ Layout::header('Chamados Concluídos', 'chamados', $num_open);
                                 </td>
                                 <td><?php echo $ticket['finished_at'] ? date('d/m/Y H:i', strtotime($ticket['finished_at'])) : '---'; ?></td>
                                 <td>
-                                    <span class="badge bg-success">CONCLUÍDO</span>
+                                    <span class="status-pill status-pill-concluido">
+                                        <i class="fas fa-circle-check x-small"></i> CONCLUÍDO
+                                    </span>
                                 </td>
                                 <td class="text-end">
                                     <a href="ver1chamadoAdmin.php?id=<?php echo $ticket['id']; ?>" class="btn btn-outline-info btn-sm">

@@ -28,29 +28,29 @@ Layout::header('Área Administrativa', 'home', $num_tickets);
 
 <div class="row g-4">
     <div class="col-md-4">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title text-danger"><i class="fas fa-exclamation-circle"></i> Chamados em Aberto</h5>
                 <h2 class="display-4 fw-bold"><?php echo $num_tickets; ?></h2>
-                <a href="chamadosAbertos.php" class="btn btn-danger btn-sm">Ver Detalhes</a>
+                <a href="chamadosAbertos.php" class="btn btn-danger btn-sm mt-auto">Ver Detalhes</a>
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title text-success"><i class="fas fa-check-circle"></i> Concluídos</h5>
                 <p class="card-text">Gerenciar chamados finalizados.</p>
-                <a href="chamadosConcluidos.php" class="btn btn-outline-success btn-sm">Acessar</a>
+                <a href="chamadosConcluidos.php" class="btn btn-outline-success btn-sm mt-auto">Acessar</a>
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title text-primary"><i class="fas fa-user-plus"></i> Novos Usuários</h5>
                 <p class="card-text">Cadastrar técnicos ou clientes.</p>
-                <a href="insereUsuario.php" class="btn btn-outline-primary btn-sm">Cadastrar</a>
+                <a href="insereUsuario.php" class="btn btn-outline-primary btn-sm mt-auto">Cadastrar</a>
             </div>
         </div>
     </div>

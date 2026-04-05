@@ -8,7 +8,7 @@ class Layout
     {
         $user_name = $_SESSION['user_name'] ?? 'Usuário';
         $role = $_SESSION['user_role'] ?? '';
-        $base_path = ($role === 'admin') ? '' : '../'; // Simple logic for nested dirs
+        $base_path = '../'; 
         
         ?>
         <!DOCTYPE html>
@@ -16,77 +16,93 @@ class Layout
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title><?php echo htmlspecialchars($title); ?> | SafeTickets</title>
+            <title><?php echo htmlspecialchars($title); ?> | SafeTickets Pro</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-            <link rel="icon" type="image/png" href="../img/favicon.png"/>
-            <style>
-                body { background-color: #f8f9fa; }
-                .navbar { box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
-                .navbar-brand { font-weight: 700; color: #0d6efd !important; }
-            </style>
+            <link rel="stylesheet" href="<?php echo $base_path; ?>CSS/global.css?v=2.1">
+            <link rel="icon" type="image/png" href="<?php echo $base_path; ?>img/favicon.png"/>
         </head>
-        <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-            <div class="container">
-                <a class="navbar-brand" href="adminHome.php">SafeTickets</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarMain">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link <?php echo $active_page === 'home' ? 'active' : ''; ?>" href="adminHome.php">
-                                <i class="fas fa-home"></i> Home
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-ticket-alt"></i> Chamados
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="abrirchamadoAdmin.php">Abrir Chamado</a></li>
-                                <li><a class="dropdown-item" href="chamadosAbertos.php">Em Aberto <span class="badge bg-danger"><?php echo $num_chamados; ?></span></a></li>
-                                <li><a class="dropdown-item" href="chamadosConcluidos.php">Concluídos</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="verchamadosAdmin.php">Listar Todos</a></li>
-                            </ul>
-                        </li>
-                        <?php if ($role === 'admin'): ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-user-cog"></i> Administração
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><h6 class="dropdown-header">Técnicos</h6></li>
-                                <li><a class="dropdown-item" href="insereUsuario.php?role=tecnico">Inserir Técnico</a></li>
-                                <li><a class="dropdown-item" href="verTecnicos.php">Gerenciar Técnicos</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><h6 class="dropdown-header">Usuários</h6></li>
-                                <li><a class="dropdown-item" href="insereUsuario.php">Inserir Usuário</a></li>
-                                <li><a class="dropdown-item" href="verUsuarios.php">Gerenciar Usuários</a></li>
-                            </ul>
-                        </li>
-                        <?php endif; ?>
-                    </ul>
-                    <div class="navbar-nav align-items-center">
-                        <span class="nav-item me-3 text-muted">
-                            <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($user_name); ?>
-                        </span>
-                        <a href="../logout.php" class="btn btn-outline-danger btn-sm">Sair</a>
-                    </div>
+        <body class="bg-light">
+            <!-- Professional Sidebar V2 -->
+            <aside class="sidebar">
+                <a href="adminHome.php" class="brand">
+                    <i class="fas fa-ticket-alt brand-icon"></i>
+                    <span>SafeTickets</span>
+                </a>
+
+                <nav class="nav-group">
+                    <span class="nav-label">Monitoramento</span>
+                    <a href="adminHome.php" class="nav-link-item <?php echo $active_page === 'home' ? 'active' : ''; ?>">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                    </a>
+                    <a href="chamadosAbertos.php" class="nav-link-item <?php echo $active_page === 'chamados' ? 'active' : ''; ?>">
+                        <i class="fas fa-inbox"></i> Chamados Abertos
+                    </a>
+                    <a href="chamadosConcluidos.php" class="nav-link-item">
+                        <i class="fas fa-check-double"></i> Concluídos
+                    </a>
+                </nav>
+
+                <?php if ($role === 'admin'): ?>
+                <nav class="nav-group">
+                    <span class="nav-label">Administração</span>
+                    <a href="verUsuarios.php" class="nav-link-item">
+                        <i class="fas fa-users-cog"></i> Usuários
+                    </a>
+                    <a href="verTecnicos.php" class="nav-link-item">
+                        <i class="fas fa-user-shield"></i> Técnicos
+                    </a>
+                    <a href="verchamadosAdmin.php" class="nav-link-item">
+                        <i class="fas fa-database"></i> Logs do Sistema
+                    </a>
+                </nav>
+                <?php endif; ?>
+
+                <div class="mt-auto px-2">
+                    <a href="../logout.php" class="nav-link-item text-danger border border-danger-subtle mt-4">
+                        <i class="fas fa-sign-out-alt"></i> Sair do Sistema
+                    </a>
                 </div>
-            </div>
-        </nav>
-        <div class="container mt-4">
+            </aside>
+
+            <!-- Main Application Shell -->
+            <main class="main-shell">
+                <header class="top-header">
+                    <div class="d-flex align-items-center">
+                        <h1 class="h5 fw-bold mb-0 text-slate-800">
+                             <?php echo htmlspecialchars($title); ?>
+                        </h1>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="text-end d-none d-sm-block">
+                            <p class="mb-0 small fw-bold"><?php echo htmlspecialchars($user_name); ?></p>
+                            <p class="mb-0 x-small text-muted text-uppercase" style="font-size: 0.65rem;"><?php echo strtoupper($role); ?></p>
+                        </div>
+                        <div class="avatar bg-indigo-100 p-2 rounded-circle border">
+                            <i class="fas fa-user-circle fa-xl text-primary"></i>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="content-area">
         <?php
     }
 
     public static function footer()
     {
         ?>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+                </div>
+                <footer class="py-4 px-5 text-muted small border-top bg-white mt-auto">
+                    <div class="container-fluid d-flex justify-content-between align-items-center p-0">
+                        <span>&copy; <?php echo date('Y'); ?> SafeTickets - Advanced IT Support Case Study</span>
+                        <div class="d-flex gap-3">
+                           <span class="badge bg-light text-dark border">v2.0.4 - Premium</span>
+                        </div>
+                    </div>
+                </footer>
+            </main>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         </body>
         </html>
         <?php

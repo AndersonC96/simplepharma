@@ -83,10 +83,10 @@ Layout::header('Chamados em Aberto', 'chamados', $total_items);
                                 <td><?php echo date('d/m/Y H:i', strtotime($ticket['created_at'])); ?></td>
                                 <td>
                                     <?php 
-                                        $badge_class = ($ticket['status'] === 'Aberto') ? 'bg-danger' : 'bg-warning text-dark';
+                                        $pill_class = ($ticket['status'] === 'Aberto') ? 'status-pill-open' : 'status-pill-progress';
                                     ?>
-                                    <span class="badge <?php echo $badge_class; ?>">
-                                        <?php echo htmlspecialchars($ticket['status']); ?>
+                                    <span class="status-pill <?php echo $pill_class; ?>">
+                                        <i class="fas fa-circle x-small" style="font-size: 0.4rem;"></i> <?php echo htmlspecialchars($ticket['status']); ?>
                                     </span>
                                 </td>
                                 <td class="text-end">
