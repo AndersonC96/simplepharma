@@ -59,12 +59,12 @@ class Layout
                             </a>
                             <ul class="dropdown-menu">
                                 <li><h6 class="dropdown-header">Técnicos</h6></li>
-                                <li><a class="dropdown-item" href="inseretecnicoRes.php">Inserir Técnico</a></li>
-                                <li><a class="dropdown-item" href="verTecnicos.php">Ver Técnicos</a></li>
+                                <li><a class="dropdown-item" href="insereUsuario.php?role=tecnico">Inserir Técnico</a></li>
+                                <li><a class="dropdown-item" href="verTecnicos.php">Gerenciar Técnicos</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Usuários</h6></li>
                                 <li><a class="dropdown-item" href="insereUsuario.php">Inserir Usuário</a></li>
-                                <li><a class="dropdown-item" href="verUsuarios.php">Ver Usuários</a></li>
+                                <li><a class="dropdown-item" href="verUsuarios.php">Gerenciar Usuários</a></li>
                             </ul>
                         </li>
                         <?php endif; ?>
