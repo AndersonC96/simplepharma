@@ -45,7 +45,7 @@ if (isset($_GET['err'])) {
                 <div class="alert alert-error"><?php echo htmlspecialchars($error_msg); ?></div>
             <?php endif; ?>
 
-            <form action="autenticar.php" method="POST">
+            <form action="autenticar.php" method="POST" class="login-form">
                 <?php Csrf::field(); ?>
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" placeholder="seu@email.com" required autofocus>
