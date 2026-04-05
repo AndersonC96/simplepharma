@@ -1,60 +1,70 @@
-# SafeTickets - Sistema de Gerenciamento de Chamados (Sanitizado)
+# SafeTickets Pro - Portfolio Case Study
 
-Este repositório contém uma versão refatorada, segura e sanitizada de um sistema legado de chamados em PHP. O objetivo desta refatoração foi transformar um projeto interno em um case técnico profissional para portfólio público.
+**SafeTickets Pro** é o resultado de uma refatoração profunda de um sistema legado de suporte de TI. O objetivo deste projeto foi transformar um código "espaguete" e inseguro em uma aplicação PHP moderna, sanitizada e tecnicamente defensável para exibição em portfólio profissional.
 
-## 🚀 Melhorias e Refatorações Realizadas
+---
 
-### 1. Segurança e Privacidade
-- **Sanitização de Dados**: Remoção completa de dados sensíveis (e-mails reais, nomes de funcionários e histórico de chamados). Substituído por `database/seed.sql` com dados fictícios.
-- **Hashing de Senhas**: Substituição de senhas em texto puro por `password_hash()` (BCRYPT) e `password_verify()`.
-- **Proteção CSRF**: Implementada em todos os formulários de ação (Login, Abertura de Chamado, Atualização de Status).
-- **Upload Seguro**: Sistema de anexos refatorado para validar tipos MIME, extensões e renomear arquivos com hashes aleatórios, prevenindo ataques de execução e path traversal.
-- **Prevenção de SQL Injection**: Migração completa de queries interpoladas para **Prepared Statements** utilizando PDO.
+## 📖 O Desafio da Refatoração (Legacy to Pro)
+O sistema original apresentava vulnerabilidades críticas e uma arquitetura desorganizada. Minha missão foi reconstruir a base mantendo a stack original (PHP/MySQL), mas aplicando padrões de engenharia de software de alto nível.
 
-### 2. Arquitetura e Manutenção
-- **Reorganização de Pastas**: Segregação de responsabilidades:
-  - `public/`: Único ponto de entrada web.
-  - `src/`: Lógica centralizada, Helpers e Classes.
-  - `config/`: Configurações globais e bootstrap.
-  - `storage/`: Armazenamento local de logs e uploads (ignorado pelo Git).
-- **Variáveis de Ambiente**: Uso do `vlucas/phpdotenv` para remover credenciais hardcoded do código-fonte.
-- **Centralização de Sessão**: Configurações de cookies seguras (`HttpOnly`, `SameSite=Lax`) e regeneração de ID após o login.
-- **Padronização de Banco de Dados**: Schema modernizado para `InnoDB` com tipos de dados adequados (`DATETIME` em vez de `VARCHAR`).
+### Evolução Técnica Principal:
+- **Arquitetura**: Migração de um diretório raiz desorganizado para o padrão `public/` (Document Root), isolando a lógica de negócio (`src/`) e configurações (`config/`) do acesso público direto.
+- **Segurança**: Substituí todas as interações inseguras de `mysqli` por **PDO com Prepared Statements**. Implementei hashing de senhas com BCRYPT e proteção contra ataques CSRF e Path Traversal.
+- **Autoloading**: Implementação de **PSR-4 Autoloading** via Composer, eliminando a necessidade de `include` manuais em todo o projeto.
 
-### 3. Interface e Experiência
-- **Neutralização de Marca**: Remoção de logos e referências a empresas reais, substituído por uma identidade visual genérica ("SafeTickets").
-- **Componentes Reutilizáveis**: Navbar e layout centralizados para facilitar a manutenção visual.
-- **Flash Messages**: Feedback amigável para o usuário em ações de sucesso ou erro.
+---
 
-## 🛠️ Stack Técnica
-- **PHP 8.x** (Sem frameworks)
-- **MySQL (PDO)**
-- **Bootstrap 5 & FontAwesome**
-- **Composer** (vlucas/phpdotenv)
+## 🛠️ Funcionalidades por Nível de Acesso
 
-## 📦 Como Instalar Localmente
+### 1. Painel Administrativo (Gestão Total)
+- **Dashboard de Monitoramento**: Visualização em tempo real do volume de chamados em aberto e concluídos.
+- **Gestão de Usuários e Técnicos**: Fluxo unificado para criação, edição e controle de acesso de todos os perfis do sistema.
+- **Auditoria de Chamados**: Acesso completo ao histórico e detalhes de qualquer ticket gerado na plataforma.
 
-### Pré-requisitos
-- Servidor Web (Apache/Nginx)
-- PHP 8.x
-- MySQL
-- Composer
+### 2. Painel do Técnico (Operacional)
+- **Fila de Atendimento**: Visualização exclusiva de chamados atribuídos ou pendentes.
+- **Ciclo de Vida do Ticket**: Controle de estados (Aberto -> Em Atendimento -> Concluído) com registro automático de timestamps.
+- **Histórico Individual**: Acompanhamento de indicadores de performance e tickets finalizados pelo próprio técnico.
 
-### Passo a Passo
-1. Clone o repositório.
-2. Na raiz do projeto, execute: `composer install`.
-3. Renomeie o arquivo `.env.example` para `.env` e configure suas credenciais de banco de dados.
-4. Crie o banco de dados no MySQL e importe os arquivos na ordem:
-   - `database/schema.sql`
-   - `database/seed.sql`
-5. Configure seu servidor web para apontar o *Document Root* para a pasta `public/`.
+### 3. Painel do Usuário / Cliente (Solicitante)
+- **Abertura de Chamados**: Interface simplificada para descrição de problemas.
+- **Sistema de Anexos**: Upload seguro de evidências (prints, logs) com sanitização automática de nomes de arquivos.
+- **Acompanhamento**: Visualização do status atual sem a necessidade de contato direto com o suporte.
 
-## 🧪 Perfis de Acesso (Demo)
-| Papel | E-mail | Senha |
+---
+
+## 🛡️ Camada de Segurança (Deep Dive)
+- **Proteção CSRF**: Classe `App\Csrf` dedicada que gera e valida tokens em todas as requisições POST.
+- **Upload Sanitizado**: Classe `App\Uploader` que valida tipos MIME reais (não apenas extensões) e renomeia arquivos para hashes aleatórios.
+- **RBAC (Role-Based Access Control)**: Middleware leve de autenticação que valida permissões granulares antes de renderizar qualquer rota.
+- **Sanitização de Histórico**: Este repositório foi higienizado com ferramentas de limpeza de Git para garantir que nenhum dado sensível real ficasse rastreável no histórico de commits.
+
+---
+
+## 🎨 Design System V2 (Premium SaaS)
+A interface foi projetada para oferecer uma experiência "SaaS-ready":
+- **Sidebar Navigation**: Menu lateral retrátil inspirado em softwares profissionais.
+- **UI Moderna**: Tipografia **Inter**, paleta de cores Indigo/Slate e componentes com *Glassmorphism*.
+- **UX Responsivo**: Sistema adaptável para dispositivos móveis e desktops.
+
+---
+
+## 🚀 Instalação e Setup
+
+1. **Requisitos**: PHP 8.1+, MySQL 8.0+, Composer.
+2. **Dependências**: `composer install` para baixar o `vlucas/phpdotenv`.
+3. **Ambiente**: Renomeie `.env.example` para `.env` e configure suas credenciais.
+4. **Database**:
+   - Execute `database/schema.sql` (Estrutura).
+   - Execute `database/seed.sql` (Dados Fictícios de Demonstração).
+5. **Vhost**: Aponte o Document Root para a pasta `/public`.
+
+### Usuários de Demo:
+| Perfil | Login | Senha |
 |---|---|---|
 | Administrador | `admin@safetickets.local` | `password` |
 | Técnico | `tech1@safetickets.local` | `password` |
-| Cliente (SubAdmin) | `subadmin@safetickets.local` | `password` |
+| Cliente | `subadmin@safetickets.local` | `password` |
 
 ---
-**Nota Técnica**: Como este projeto possui um histórico de versionamento que continha dados sensíveis expostos anteriormente, recomenda-se o uso de ferramentas como `BFG Repo-Cleaner` ou `git filter-repo` se for clonar o histórico completo para uso público.
+**Desenvolvido como um case técnico de refatoração e engenharia de software.**
